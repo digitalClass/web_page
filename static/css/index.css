@@ -1,0 +1,67 @@
+/*logo设计*/
+.navbar-brand{
+    padding-top: 0px;
+}
+
+.logo{
+    width : 52px;
+    height : 52px;
+}
+
+/*导航条*/
+/*.navbar-wrapper{*/
+    /*height : 50px;*/
+/*}*/
+
+/*.container-fluid{*/
+    /*height:50px;*/
+/*}*/
+
+/*.container-fluid .navbar{*/
+    /*height:50px;*/
+/*}*/
+
+/*幻灯片设计*/
+.slide{
+    height : auto
+}
+
+.carousel{
+    height : 800px;
+}
+
+.carousel-inner{
+    height:100%;
+}
+
+.carousel .item{
+    height : 100%
+}
+
+.carousel .item img{
+    height :100%
+}
+
+/*导航栏欢迎字幕*/
+.navbar-text{
+    margin-top:7px;
+    font-size:28px;
+    font-family: 华文行楷;
+}
+
+/*课程列表*/
+.listbox{
+    position: absolute;
+    top: 150px;
+}
+
+.listbox_content{
+    position: absolute;
+    /*top: 120px;*/
+    display: none;
+}
+
+/*子课程展示*/
+.listbox_content{
+    height : 600px;
+}
