@@ -1,1 +1,1 @@
-# 请写login.html和register_form.html
+# 请写login.html和registration_form.html
