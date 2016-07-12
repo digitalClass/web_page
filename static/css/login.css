@@ -1,0 +1,35 @@
+/*logo设计*/
+.navbar-brand{
+    padding-top: 0px;
+}
+
+.logo{
+    width : 52px;
+    height : 52px;
+}
+
+/*导航条*/
+/*.navbar-wrapper{*/
+    /*height : 50px;*/
+/*}*/
+
+/*.container-fluid{*/
+    /*height:50px;*/
+/*}*/
+
+/*.container-fluid .navbar{*/
+    /*height:50px;*/
+/*}*/
+
+/*导航栏欢迎字幕*/
+.navbar-text{
+    margin-top:7px;
+    font-size:28px;
+    font-family: 华文行楷;
+}
+
+/*登陆容器*/
+.login_form{
+    margin-top:70px;
+    min-height: 400px;
+}
