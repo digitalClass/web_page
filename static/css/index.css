@@ -53,6 +53,7 @@
 .listbox{
     position: absolute;
     top: 150px;
+    display: none;
 }
 
 .listbox_content{
@@ -64,4 +65,11 @@
 /*子课程展示*/
 .listbox_content{
     height : 600px;
+}
+
+/*课程显示面板*/
+.class_list{
+    position: absolute;
+    top: 150px;
+    opacity: 0.2;
 }
