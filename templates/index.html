@@ -80,7 +80,7 @@
 
      <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -108,6 +108,82 @@
       </a>
     </div><!-- /.carousel -->
 
+    <!--课程列表信息-->
+    <div class="container class_list js-class_list">
+        <div class="panel panel-default col-md-offset-1 col-md-12">
+          <!-- Default panel contents -->
+          <div class="panel-heading">课程列表</div>
+
+          <!-- Table -->
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>课程名称</th>
+                  <th>开课时间</th>
+                  <th>开课老师</th>
+                </tr>
+              </thead>
+              <tbody>
+                {#
+                    <!--你看不到我哦， ps： 后端可以尝试使用for 循环加载 <tr></tr> 信息-->
+                    <!--其中items 为 存放了 class_name, class_create_date, teacher_name 信息的列表结构-->
+                    <!--形如： items = [['线性代数', '2016-03-01', '刘涛'], ['数理统计', '2016-03-01', '孙红雷'], ['微机原理', '2016-03-01', '马东']]-->
+                    <!--ps： 下面是jinja2 模板引擎的生成代码:-->
+                    <!--==============================【后端请忽略这部分， 直接看 或者 修改 Django 部分代码】===============================-->
+                #}
+                {% for class_name, class_create_date, teacher_name in  items%}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td><a href="#">{{class_name}}</a></td>
+                  <td>{{class_create_date}}</td>
+                  <td>{{teacher_name}}</td>
+                </tr>
+                {% endfor %}
+
+                {#
+                    <!--相应的 Django 版本 的生成代码：-->
+                    {% for class_name, class_create_date, teacher_name in  items%}
+                    <tr>
+                      <th scope="row">{{forloop.index}}</th>
+                      <td><a href="#">{{class_name}}</a></td>
+                      <td>{{class_create_date}}</td>
+                      <td>{{teacher_name}}</td>
+                    </tr>
+                    {% endfor %}
+                #}
+
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="#">高等数学</a></td>
+                  <td>2016-03-01</td>
+                  <td>吴刚</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="#">高等数学</a></td>
+                  <td>2016-03-01</td>
+                  <td>吴刚</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="#">高等数学</a></td>
+                  <td>2016-03-01</td>
+                  <td>吴刚</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="#">高等数学</a></td>
+                  <td>2016-03-01</td>
+                  <td>吴刚</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+    {#
+    <!--暂时放弃使用 deprecated-->
     <div class = "listbox">
         <div class = "container">
             <div class="btn-group-vertical  col-md-offset-1 col-md-2" role="group" aria-label="...">
@@ -168,6 +244,7 @@
             </div>
         </div>
     </div>
+    #}
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
