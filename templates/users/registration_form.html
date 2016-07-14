@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block  title %}
     用户注册
 {% endblock %}
@@ -11,44 +12,47 @@
     <!--注册表单-->
     <div class="container login_form">
         <div class = "col-md-offset-2 col-md-8">
-            <form action="registration_form_submit" method="post" accept-charset="utf-8">
-                <div class="form-group">
-                    <label for="username">用户名</label>
-                    <input type="text" class="form-control" name="username" placeholder="username">
-                </div>
+            <form action="." method="post" accept-charset="utf-8">
+                <!-- <div class="form-group"> -->
+                <!--     <label for="username">用户名</label> -->
+                <!--     <input type="text" class="form-control" name="username" placeholder="username"> -->
+                <!-- </div> -->
 
-                <div class="form-group">
-                    <label for="user_id">学号/教工号</label>
-                    <input type="text" class="form-control" name="user_id" placeholder="SA14009001">
-                </div>
+                <!-- <div class="form-group"> -->
+                <!--     <label for="user_id">学号/教工号</label> -->
+                <!--     <input type="text" class="form-control" name="student_id" placeholder="SA14009001"> -->
+                <!-- </div> -->
 
-              <div class="form-group">
-                <label for="email">邮箱</label>
-                <input type="email" class="form-control" name="email" placeholder="Email">
-              </div>
+              <!-- <div class="form-group"> -->
+                <!-- <label for="email">邮箱</label> -->
+                <!-- <input type="email" class="form-control" name="email" placeholder="Email"> -->
+              <!-- </div> -->
 
-              <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" class="form-control" name="password" placeholder="Password">
-              </div>
+              <!-- <div class="form-group"> -->
+                <!-- <label for="password">密码</label> -->
+                <!-- <input type="password" class="form-control" name="password1" placeholder="Password"> -->
+              <!-- </div> -->
+              <!-- <div class="form-group"> -->
+                <!-- <label for="password">确认密码</label> -->
+                <!-- <input type="password" class="form-control" name="password2" placeholder="Password"> -->
+              <!-- </div> -->
 
-               <div class="form-group">
-                      <label for="name">性别</label>
-                      <select name = "gender" class="form-control">
-                         <option>男</option>
-                         <option>女</option>
-                         <option>秀吉</option>
-                      </select>
-               </div>
+               <!-- <div class="form-group"> -->
+                <!--       <label for="name">性别</label> -->
+                <!--       <select name = "gender" class="form-control"> -->
+                <!--          <option>Male</option> -->
+                <!--          <option>Female</option> -->
+                <!--       </select> -->
+               <!-- </div> -->
 
-                <div class="form-group">
-                      <label for="name">身份</label>
-                      <select name = "user_type" class="form-control">
-                         <option>老师</option>
-                         <option>学生</option>
-                         <option>助教</option>
-                      </select>
-               </div>
+                <!-- <div class="form-group"> -->
+                <!--       <label for="name">身份</label> -->
+                <!--       <select name = "user_role" class="form-control"> -->
+                <!--          <option>Student</option> -->
+                <!--          <option>Teacher</option> -->
+                <!--          <option>TeachAssisstant</option> -->
+                <!--       </select> -->
+               <!-- </div> -->
 
 
                <!--记住我, 先保留着 -->
@@ -57,9 +61,17 @@
                   <!--<input type="checkbox"> Check me out-->
                 <!--</label>-->
               <!--</div>-->
+              {% if form.errors  %}
+              {% include "users/partials/errors.html" %}
+              {% endif %}
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" textalign="left">
+                  {% include "users/partials/field.html" %}
+              </div>
+              {% endfor %}
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 {% endblock %}
-

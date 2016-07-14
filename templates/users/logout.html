@@ -2,5 +2,12 @@
 {% load i18n %}
 
 {% block content %}
-<p>{% trans "Logged out" %}</p>
+<div class = "col-md-offset-2 col-md-8">
+    <p> 您已登出，感谢您在我们网站上花费的宝贵时间，期待与您的下次见面。</p>
+    <a href="/accounts/login">重新登录</a>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src = "/static/js/index.js"></script>
 {% endblock %}
