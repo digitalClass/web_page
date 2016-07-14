@@ -1,4 +1,10 @@
-# 请写login.html和registration_form.html
+## 0715 后端提交
+1. 修改了`base.html`，主要是加了登录那块的的 `{% block logstatus %}`
+1. 修改`profile.html`为django模板，并移到了users目录下
+2. 修改了`users/login.html`,`users/regiseter_form.html`，用到了django的表单类，见[DB2.0 chapter 7](djangobook.py3k.cn/2.0/chapter07/),可以登录和注册了，只是样式还要你们改了。。。
+3. 上传了一些用户操作的简单模板，麻烦你们调整样式。
+
+## 请写login.html和registration_form.html
 
 ## 前端提交说明 （20160712）
 1. login.html和registration_form.html 已添加， 请查收

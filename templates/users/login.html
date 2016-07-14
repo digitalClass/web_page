@@ -10,16 +10,14 @@
     <!--登陆表单-->
     <div class="container login_form">
         <div class = "col-md-offset-2 col-md-8">
-            <form action="/accounts/profile/" method="post" role="form">
+            <form action="." method="post" role="form">
+                {% if form.errors %}
+                    {% include "users/partials/errors.html" %}
+                {% endif %}
                 {% csrf_token %}
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" name="email" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password">
-              </div>
+                {% for field in form %}
+                   {% include "users/partials/field.html" %} 
+                {% endfor %}
 
                <!--记住我, 先保留着 -->
               <!--<div class="checkbox">-->
@@ -28,9 +26,15 @@
                 <!--</label>-->
               <!--</div>-->
               <button type="submit" class="btn btn-primary">Submit</button>
+              <input type="hidden" name="next" value="{{next}}"/>
+              <p><a href="{% url 'users_password_reset' %}">忘记密码？</a></p>
+              <p><a href="{% url 'users_register' %}">用户注册</a></p>
             </form>
         </div>
     </div>
 {% endblock %}
 
 
+{% block js %}
+<script src = "/static/js/index.js"></script>
+{% endblock %}
