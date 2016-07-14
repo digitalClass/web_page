@@ -18,3 +18,8 @@
 
 ##前端提交说明（2016年7月14日16:04:41）
 1.上传了mycenter.html，对应教师个人页面
+
+## 前端提交说明 （20160714 17:31 by zhyh2010）
+将login， index， register， create， player生成django框架支持的模板格式
+其余文件暂时没测试
+ps mycenter.html 渲染效果有点问题， 可能需要修改下
