@@ -1,14 +1,15 @@
-{% extends "base.html" %}
-{% load i18n %}
+{%extends "base.html"%}
+{%load i18n%}
 
-{% block content %}
-<div>
-    Login in successed.
-</div>
-<div>
-    订阅:
-</div>
-<div>
-    TODO
-</div>
-{% endblock %}
+{%block loginandlogout%}
+<li><a href="/accounts/profile/">个人中心<span class="sr-only">(current)</span></a></li>
+<li><a href="/accounts/logout/">注销</a></li>
+{%endblock%}
+
+{%block content%}
+<b><p align="center">欢迎光临:{{user_name}}</p></b>
+<ul>
+    <li>{{course1}}</li>
+    <li>{{course2}}</li>
+</ul>
+{%endblock%}
