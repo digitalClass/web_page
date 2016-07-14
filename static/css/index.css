@@ -8,19 +8,6 @@
     height : 52px;
 }
 
-/*导航条*/
-/*.navbar-wrapper{*/
-    /*height : 50px;*/
-/*}*/
-
-/*.container-fluid{*/
-    /*height:50px;*/
-/*}*/
-
-/*.container-fluid .navbar{*/
-    /*height:50px;*/
-/*}*/
-
 /*幻灯片设计*/
 .slide{
     height : auto
@@ -72,4 +59,5 @@
     position: absolute;
     top: 150px;
     opacity: 0.2;
+    width:100%;
 }
