@@ -1,0 +1,31 @@
+.topbg{
+	background-color: #000000;
+	margin-top: 0;
+}
+
+.top-text{
+	text-align: left;
+	font-family: "微软雅黑";
+	color: #FFFFFF;
+}
+
+.course-title{
+	background-color: #FFFFFF;
+	border-top:rgb(238,238,238)20px solid;
+	
+}
+
+.course-nav2{
+	background-color: rgb(250,250,250);
+	height: 40px;
+	border-width: 5px;
+	border-color: rgb(235,235,235);
+	padding:5px;
+}
+
+.navbar2{
+	background-color: rgb(250,250,250);
+	border-top:rgb(238,238,238)20px solid;
+	border-bottom:rgb(238,238,238)20px solid;
+	padding:6px;
+}

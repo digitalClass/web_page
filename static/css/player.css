@@ -1,0 +1,104 @@
+/*logo设计*/
+.navbar-brand{
+    padding-top: 0px;
+}
+
+.logo{
+    width : 52px;
+    height : 52px;
+}
+
+/*幻灯片设计*/
+.slide{
+    height : auto
+}
+
+.carousel{
+    height : 800px;
+    margin-bottom: 20px;
+}
+
+.carousel-inner{
+    height:100%;
+}
+
+.carousel .item{
+    height : 100%
+}
+
+.carousel .item img{
+    height :100%
+}
+
+/*导航栏欢迎字幕*/
+.navbar-text{
+    margin-top:7px;
+    font-size:28px;
+    font-family: 华文行楷;
+}
+
+/*课程列表*/
+.listbox{
+    position: absolute;
+    top: 150px;
+    width:100%;
+    height: 800px;
+}
+
+.listbox .small_logo{
+    width : 32px;
+    height : 32px;
+}
+
+.text-tip{
+    min-height: 120px;
+}
+
+/*评论区*/
+.comments_zone{
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 30px;
+}
+
+.posts-comments{
+    min-height: 600px;
+}
+
+.nav-jump-go{
+    position:relative;
+    top:6px
+}
+
+.i_am_comments{
+    height:50px;
+    display:block;
+}
+
+.posts-comments{
+    position: relative;
+    top:20px;
+}
+
+.posts-comments li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.posts-comments li div{
+    margin-bottom: 10px;
+}
+
+.nav-flip{
+    position: relative;
+    top:20px;
+}
+
+/*底部页面*/
+.marketing{
+    position: absolute;
+    top:1100px;
+    width:100%
+}
+

@@ -1,11 +1,12 @@
-{% load i18n staticfiles %}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-	<title>{% block title %}{{ title|default:"欢迎来到数字化课堂"}}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+
     <!-- Bootstrap core CSS -->
     <!--<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
@@ -23,28 +24,77 @@
     <![endif]-->
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/carousel.css" rel="stylesheet">
-    <link href="../static/css/index.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+{#    <link href="/static/css/css_base.css" rel="stylesheet">#}
+    <link href="/static/css/base.css" rel="stylesheet">
+    {% block css %} {% endblock %}
 </head>
 <body>
+    <!-- 导航条
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <div class="container-fluid">
+        <!--导航条， 深色背景， 固定在顶部-->
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <!--用于固定宽度， 可以用来为包裹的内容添加一个 padding， 非占满全屏宽度-->
+          <div class="container-fluid">
+              <row>
+                <div class="navbar-header col-md-offset-1">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
 
-<div class="header navbar">
-	<div class="container">
-		<a class="navbar-brand" href="/">回到主页</a>
-	</div>
-</div>
-<div class="container">
-	{% if messages %}
-		{% for message in messages %}
-			<div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
-		{% endfor %}
-	{% endif %}
-	{% block content %}
-		<p>Use this template get you up and running with django-users2.</p>
-	{% endblock content %}
-</div>
+                  <!--logo-->
+                  <a class="navbar-brand" href="/">
+                      <img alt="Brand" src="/static/images/logo.ico" class = "logo">
+                  </a>
+                </div>
+
+                  <!--欢迎字符-->
+                <div id="navbar" class="navbar-collapse collapse col-md-offset-4">
+                  <ul class="nav navbar-nav ">
+                      <p class="navbar-text">欢迎来到数字化课堂</p>
+                  </ul>
+
+                    <ul class = "nav navbar-nav navbar-right col-md-1">
+                          <li><span class="icon-bar"></span></li>
+                      </ul>
+
+                    <!--登陆注册-->
+                      <ul class = "nav navbar-nav navbar-right">
+                          <li><a href="/accounts/login/">登陆<span class="sr-only">(current)</span></a></li>
+                          <li><a href="/accounts/register/">注册</a></li>
+                      </ul>
+
+                    <!--搜索框-->
+                     <form class="nav navbar-nav navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                      </form>
+                </div>
+              </row>
+             </div>
+        </nav>
+      </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+        <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <div class="container-fluid marketing">
+      <!-- FOOTER -->
+      <footer class = "col-md-offset-1 col-md-11">
+        <p class="pull-right col-md-1"><span class = "icon-bar"></span></p>
+        <p class="pull-right"><a href="#">反馈</a></p>
+        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
 </body>
+
+{% block js %}{% endblock %}
+
 </html>
