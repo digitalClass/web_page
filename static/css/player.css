@@ -72,7 +72,7 @@
 }
 
 .i_am_comments{
-    height:50px;
+    min-height:50px;
     display:block;
 }
 
