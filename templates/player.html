@@ -18,14 +18,14 @@
                       <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                       <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                          <img class="first-slide" src="/static/images/slide/4.jpg" alt="First slide">
+                          <img class="first-slide" src="{{ ppt_slices_data.img_path }}" alt="First slide">
                         </div>
-                        <div class="item">
-                          <img class="second-slide" src="/static/images/slide/2.jpg" alt="Second slide">
-                        </div>
-                        <div class="item">
-                          <img class="third-slide" src="/static/images/slide/5.jpg" alt="Third slide">
-                        </div>
+{#                        <div class="item">#}
+{#                          <img class="second-slide" src="/static/images/slide/2.jpg" alt="Second slide">#}
+{#                        </div>#}
+{#                        <div class="item">#}
+{#                          <img class="third-slide" src="/static/images/slide/5.jpg" alt="Third slide">#}
+{#                        </div>#}
                       </div>
                       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -58,10 +58,10 @@
                         <!--课程描述-->
                         <dl class = "class-description">
                             <dt class = "col-md-offset-1">
-                                课程编号 + 课程名称
+                                {{ course_data.course_id }}    {{ course_data.title }}
                             </dt>
                             <dd class = "col-md-offset-2">
-                                授课考试 + 创建时间
+                                授课老师：{{ course_data.user }} <br>创建课程时间： {{ course_data.create_time }}
                             </dd>
                         </dl>
                         <!--发表评论-->
@@ -73,6 +73,7 @@
 {#                        </div>#}
 
                         <div class = "posts-comments">
+                            {% for question in question_data %}
                             <li>
                                 <div class = "panel panel-primary">
                                     <div>
@@ -82,242 +83,78 @@
 
                                         <span>
                                             <a href = "#">
-                                                username
+                                                {{ question.username }}
                                             </a>
                                         </span>
 
                                         <span>
-                                            2016-07-01
+                                            {{ question.date }}
                                         </span>
 
                                         <span>
-                                            vote
+                                            {{ question.num_vote }}
                                         </span>
                                     </div>
 
                                     <div>
-                                        <span class = "i_am_comments">
-                                            ====【我是内容】=======
+                                        <span class = "i_am_comments panel panel-primary col-md-offset-1">
+                                            {{ question.content }}
                                         </span>
 
-                                        <a class = "col-md-offset-8" href="#">点我回复</a>
+{#                                        <a class = "col-md-offset-8" id = "js-feedback-{{ forloop.counter }}" href="#"></a>#}
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary btn-sm col-md-offset-8" data-toggle="modal" data-target="#myModal">
+                                          点我回复
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form>
+                                                        <label class="form-control">提交评论</label>
+                                                          <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>
+
+                                                          <div class = "form-group">
+                                                                <input type="reset" class="btn btn-primary form-control">
+                                                                <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>
+                                                          </div>
+                                                </form>
+
+                                            </div>
+                                          </div>
+                                        </div>
                                     </div>
 
                                     <div>
-                                        <span class = "i_am_comments col-md-offset-1">
-                                            <div>
+                                        <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments">
+                                            {% for comment in question.question_comments %}
                                                 <div>
-                                                    <a href="#">
-                                                        <img src="/static/images/logo.ico" class = "small_logo">
-                                                    </a>
-
-                                                    <span>
-                                                        <a href = "#">
-                                                            username
+                                                    <div>
+                                                        <a href="#">
+                                                            <img src="/static/images/logo.ico" class = "small_logo">
                                                         </a>
-                                                    </span>
 
-                                                    <span>
-                                                        2016-07-01
-                                                    </span>
+                                                        <span>
+                                                            <a href = "#">
+                                                                {{ comment.username }}
+                                                            </a>
+                                                        </span>
+
+                                                        <span>
+                                                            {{ comment.date }}
+                                                        </span>
+                                                    </div>
+                                                    {{ comment.content }}
                                                 </div>
-                                                ====【我是评论】=======
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    <a href="#">
-                                                        <img src="/static/images/logo.ico" class = "small_logo">
-                                                    </a>
-
-                                                    <span>
-                                                        <a href = "#">
-                                                            username
-                                                        </a>
-                                                    </span>
-
-                                                    <span>
-                                                        2016-07-01
-                                                    </span>
-                                                </div>
-                                                ====【我是评论】=======
-                                            </div>
+                                            {% endfor %}
                                         </span>
                                     </div>
                                  </div>
                             </li>
+                            {% endfor %}
 
-                            <li>
-                                <div class = "panel panel-primary">
-                                    <div>
-                                        <a href="#">
-                                            <img src="/static/images/logo.ico" class = "small_logo">
-                                        </a>
-
-                                        <span>
-                                            <a href = "#">
-                                                username
-                                            </a>
-                                        </span>
-
-                                        <span>
-                                            2016-07-01
-                                        </span>
-                                    </div>
-
-                                    <div>
-                                        <span class = "i_am_comments">
-                                            ====【我是内容】=======
-                                        </span>
-
-                                        <a class = "col-md-offset-8" href="#">点我回复</a>
-                                    </div>
-
-                                    <div>
-                                        <span class = "i_am_comments col-md-offset-1">
-                                            <div>
-                                                <div>
-                                                    <a href="#">
-                                                        <img src="/static/images/logo.ico" class = "small_logo">
-                                                    </a>
-
-                                                    <span>
-                                                        <a href = "#">
-                                                            username
-                                                        </a>
-                                                    </span>
-
-                                                    <span>
-                                                        2016-07-01
-                                                    </span>
-                                                </div>
-                                                ====【我是评论】=======
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    <a href="#">
-                                                        <img src="/static/images/logo.ico" class = "small_logo">
-                                                    </a>
-
-                                                    <span>
-                                                        <a href = "#">
-                                                            username
-                                                        </a>
-                                                    </span>
-
-                                                    <span>
-                                                        2016-07-01
-                                                    </span>
-                                                </div>
-                                                ====【我是评论】=======
-                                            </div>
-                                        </span>
-                                    </div>
-                                 </div>
-                            </li>
-
-{#                            <li>#}
-{#                                <div class = "panel panel-primary">#}
-{#                                    <div>#}
-{#                                        <a href="#">#}
-{#                                            <img src="/static/images/logo.ico" class = "small_logo">#}
-{#                                        </a>#}
-{##}
-{#                                        <span>#}
-{#                                            <a href = "#">#}
-{#                                                username#}
-{#                                            </a>#}
-{#                                        </span>#}
-{##}
-{#                                        <span>#}
-{#                                            2016-07-01#}
-{#                                        </span>#}
-{#                                    </div>#}
-{##}
-{#                                    <div>#}
-{#                                        <span class = "i_am_comments">#}
-{#                                            ====【我是评论】=======#}
-{#                                        </span>#}
-{#                                    </div>#}
-{#                                 </div>#}
-{#                            </li>#}
-{##}
-{#                            <li>#}
-{#                                <div class = "panel panel-primary">#}
-{#                                    <div>#}
-{#                                        <a href="#">#}
-{#                                            <img src="/static/images/logo.ico" class = "small_logo">#}
-{#                                        </a>#}
-{##}
-{#                                        <span>#}
-{#                                            <a href = "#">#}
-{#                                                username#}
-{#                                            </a>#}
-{#                                        </span>#}
-{##}
-{#                                        <span>#}
-{#                                            2016-07-01#}
-{#                                        </span>#}
-{#                                    </div>#}
-{##}
-{#                                    <div>#}
-{#                                        <span class = "i_am_comments">#}
-{#                                            ====【我是评论】=======#}
-{#                                        </span>#}
-{#                                    </div>#}
-{#                                 </div>#}
-{#                            </li>#}
-{##}
-{#                            <li>#}
-{#                                <div class = "panel panel-primary">#}
-{#                                    <div>#}
-{#                                        <a href="#">#}
-{#                                            <img src="/static/images/logo.ico" class = "small_logo">#}
-{#                                        </a>#}
-{##}
-{#                                        <span>#}
-{#                                            <a href = "#">#}
-{#                                                username#}
-{#                                            </a>#}
-{#                                        </span>#}
-{##}
-{#                                        <span>#}
-{#                                            2016-07-01#}
-{#                                        </span>#}
-{#                                    </div>#}
-{##}
-{#                                    <div>#}
-{#                                        <span class = "i_am_comments">#}
-{#                                            ====【我是评论】=======#}
-{#                                        </span>#}
-{#                                    </div>#}
-{#                                 </div>#}
-{#                            </li>#}
-{##}
-{#                            <li>#}
-{#                                <div class = "panel panel-primary">#}
-{#                                    <div>#}
-{#                                        <a href="#">#}
-{#                                            <img src="/static/images/logo.ico" class = "small_logo">#}
-{#                                        </a>#}
-{##}
-{#                                        <span>#}
-{#                                            <a href = "#">#}
-{#                                                username#}
-{#                                            </a>#}
-{#                                        </span>#}
-{##}
-{#                                        <span>#}
-{#                                            2016-07-01#}
-{#                                        </span>#}
-{#                                    </div>#}
-{##}
-{#                                    <div>#}
-{#                                        <span class = "i_am_comments">#}
-{#                                            ====【我是评论】=======#}
-{#                                        </span>#}
-{#                                    </div>#}
-{#                                 </div>#}
-{#                            </li>#}
                         </div>
 
                           <div class="btn-group nav-flip col-md-offset-1" role="group" aria-label="...">
@@ -343,4 +180,13 @@
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+{#    window.uid =  {{ 当前用户id }}#}
+    window.uid =  3;
+    window.username = "zhyh2010";
+</script>
+<script type="text/javascript" src="/static/js/player.js"></script>
 {% endblock %}
