@@ -1,96 +1,26 @@
 {% extends "base.html" %}
 
 {% block title %}个人中心{% endblock %}
-
 {% block css %}
-<link href="/static/css/profile.css" rel="stylesheet">
+<link href="/static/css/login.css" rel="stylesheet">
 {% endblock %}
 
-
+{% block content %}
 <body>
-    {% block navbar %}
-    <!-- 导航条
-        ================================================== -->
-        <div class="navbar-wrapper">
-            <div class="container-fluid">
-                <!--导航条， 深色背景， 固定在顶部-->
-                <nav class="navbar navbar-inverse navbar-static-top">
-                    <!--用于固定宽度， 可以用来为包裹的内容添加一个 padding， 非占满全屏宽度-->
-                    <div class="container">
-                        <row>
-                        <div class="navbar-header col-md-offset-1">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-
-                            <!--logo-->
-                            <a class="navbar-brand" href="#">
-                                <img alt="Brand" src="/static/images/logo.ico" class = "logo">
-                            </a>
-                        </div>
-
-                        <!--欢迎字符-->
-                        <div id="navbar" class="navbar-collapse collapse col-md-offset-4">
-                            <ul class="nav navbar-nav ">
-                                <p class="navbar-text">欢迎来到数字化课堂</p>
-                            </ul>
-
-                            <ul class = "nav navbar-nav navbar-right col-md-1">
-                                <li><span class="icon-bar"></span></li>
-                            </ul>
-
-                            <!--登陆注册-->
-                            {% block logstatus %}
-                            <ul class = "nav navbar-nav navbar-right">
-                                <li><a href="/accounts/logout/">注销<span class="sr-only">(current)</span></a></li>
-                                <li><a href="/accounts/profile/">个人中心</a></li>
-                            </ul>
-                            {% endblock logstatus %}
-
-
-                            <!--搜索框-->
-                            <form class="nav navbar-nav navbar-form navbar-right">
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </form>
-                        </div>
-                        </row>
-                    </div>
-                </nav>
-            </div>
-
-        </div>
-        {% endblock navbar %}
-
-
-        {% block content %}
         <!---    message of th user--->
-        <div class="body">
-            <div class="container">
-                <div class="container-fluid course-title">
-                    <div class="row-fluid">
-                        <!--photo-->
-                        <ul class = "nav navbar-nav navbar-left">
-                            <img alt="My Photo" src="/static/images/logo.ico"  width="80" height="80"  class = "img-circle">
-                        </ul>
-
-                        <!--abstract-->
-                        <form class="nav navbar-nav navbar-form navbar-left">
-                            <h3>吴刚</h3>
-                            <p>中国科学技术大学</p>
-                        </form>
-                    </div>
-                </div>
+            <div class="container message">
+                <!--photo-->
+                <ul class = "nav navbar-nav navbar-left">
+                    <img alt="My Photo" src="/static/images/logo.ico"  width="80" height="80"  class = "img-circle">
+                </ul>
+                <!--abstract-->
+                <form class="nav navbar-nav navbar-form navbar-left">
+                    Welcome:<h3>{{user_name}}吴刚</h3>
+                    <p>中国科学技术大学</p>
+                </form>
             </div>
-        </div>
-
-
-
         <!---    List of my course-->
-
-        <div class="container class_list js-class_list">
+        <div class="container ">
             <div class="panel panel-default col-md-offset-1 col-md-12">
                 <!-- Default panel contents -->
                 <div class="panel-heading">课程列表</div>
@@ -136,7 +66,4 @@
             </div>
             <div align="center"><button ><a herf="/create/">创建新的课程</a></button> </div>
         </div>
-        <div textalign="center">Welcome:{{user_name}}</div>
-
         {% endblock content %}
-

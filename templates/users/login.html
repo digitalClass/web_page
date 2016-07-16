@@ -8,7 +8,7 @@
 
 {% block content %}
     <!--登陆表单-->
-    <div class="container login_form">
+    <div class="container-fluid login_form">
         <div class = "col-md-offset-2 col-md-8">
             <form action="." method="post" role="form">
                 {% if form.errors %}
@@ -25,6 +25,7 @@
                 <!--<input type="checkbox"> Check me out-->
                 <!--</label>-->
               <!--</div>-->
+
               <button type="submit" class="btn btn-primary">Submit</button>
               <input type="hidden" name="next" value="{{next}}"/>
               <p><a href="{% url 'users_password_reset' %}">忘记密码？</a></p>
@@ -36,5 +37,6 @@
 
 
 {% block js %}
-<script src = "/static/js/index.js"></script>
+    <script src = "/static/js/login.js"></script>
+    <script src = "/static/js/field.js"></script>
 {% endblock %}
