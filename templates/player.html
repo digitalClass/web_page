@@ -61,7 +61,19 @@
                                 {{ course_data.course_id }}    {{ course_data.title }}
                             </dt>
                             <dd class = "col-md-offset-2">
-                                授课老师：{{ course_data.user }} <br>创建课程时间： {{ course_data.create_time }}
+                                授课老师：
+								{% for teacher in course_data.teacher %}
+								{{ teacher }}  
+								{% endfor %}
+								<br>
+
+                                课程助教：
+								{% for ta in course_data.teaching_assistant %}
+								{{ ta }}  
+								{% endfor %}
+
+								<br>
+								创建课程时间： {{ course_data.date }}
                             </dd>
                         </dl>
                         <!--发表评论-->
