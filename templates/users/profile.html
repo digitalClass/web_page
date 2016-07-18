@@ -6,6 +6,13 @@
 <link href="/static/css/profile.css" rel="stylesheet">
 {% endblock %}
 
+{% block logstatus %}
+<ul class = "nav navbar-nav navbar-right">
+    <li><a href="/accounts/profile/">{{username}}<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/logout/">注销</a></li>
+</ul>
+{% endblock logstatus %}
+
 {% block content %}
 <body>
 
