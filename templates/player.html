@@ -10,8 +10,32 @@
 
     <div class="listbox">
          <div class="container-fluid">
+            <div class="panel panel-primary comments_zone col-md-10 col-md-offset-1">
+                        <!--课程描述-->
+                        <dl class = "class-description">
+                            <dt class = "col-md-offset-1">
+                                {{ course_data.course_id }}    {{ course_data.title }}
+                            </dt>
+                            <dd class = "col-md-offset-2">
+                                授课老师：
+								{% for teacher in course_data.teacher %}
+								{{ teacher }}
+								{% endfor %}
+								<br>
+
+                                课程助教：
+								{% for ta in course_data.teaching_assistant %}
+								{{ ta }}
+								{% endfor %}
+
+								<br>
+								创建课程时间： {{ course_data.date }}
+                            </dd>
+                        </dl>
+            </div>
+
             <div class="row">
-                <div class="col-md-8 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1">
                     <div>
                         <!-- Carousel
                         ================================================== -->
@@ -53,29 +77,11 @@
                     </div>
 
                 </div>
-                <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-offset-1 col-md-10">
                     <div class="panel panel-primary comments_zone">
-                        <!--课程描述-->
-                        <dl class = "class-description">
-                            <dt class = "col-md-offset-1">
-                                {{ course_data.course_id }}    {{ course_data.title }}
-                            </dt>
-                            <dd class = "col-md-offset-2">
-                                授课老师：
-								{% for teacher in course_data.teacher %}
-								{{ teacher }}  
-								{% endfor %}
-								<br>
-
-                                课程助教：
-								{% for ta in course_data.teaching_assistant %}
-								{{ ta }}  
-								{% endfor %}
-
-								<br>
-								创建课程时间： {{ course_data.date }}
-                            </dd>
-                        </dl>
                         <!--发表评论-->
 {#                        <div >#}
 {#                                <div class = "form-group">#}
@@ -84,10 +90,17 @@
 {#                                </div>#}
 {#                        </div>#}
 
-                        <div class = "posts-comments">
+                        <div class = "posts-comments js-questions">
+                            <!-- Button trigger modal -->
+                            <a data-toggle="modal" data-target="#myModal">
+                                <span class = "icon-bar sr-only">{{ -1 }}</span>
+                                <span class = "icon-bar sr-only">{{ -5 }}</span>
+                              点我提问
+                            </a>
                             {% for question in question_data %}
                             <li>
                                 <div class = "panel panel-primary">
+{#                                    提问区#}
                                     <div>
                                         <a href="#">
                                             <img src="/static/images/logo.ico" class = "small_logo">
@@ -104,8 +117,22 @@
                                         </span>
 
                                         <span>
-                                            {{ question.num_vote }}
+                                            vote: {{ question.num_vote }}
                                         </span>
+
+                                        <!-- Button trigger modal -->
+                                        <a data-toggle="modal" data-target="#myModal">
+                                            <span class = "icon-bar sr-only">{{ question.question_id }}</span>
+                                            <span class = "icon-bar sr-only">{{ -1 }}</span>
+                                          点我回复
+                                        </a>
+
+                                        <!-- Button trigger modal -->
+                                        <a data-toggle="modal" data-target="#myModal">
+                                            <span class = "icon-bar sr-only">{{ question.question_id }}</span>
+                                            <span class = "icon-bar sr-only">{{ -2 }}</span>
+                                          我要回答
+                                        </a>
                                     </div>
 
                                     <div>
@@ -114,11 +141,6 @@
                                         </span>
 
 {#                                        <a class = "col-md-offset-8" id = "js-feedback-{{ forloop.counter }}" href="#"></a>#}
-
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary btn-sm col-md-offset-8" data-toggle="modal" data-target="#myModal">
-                                          点我回复
-                                        </button>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -132,18 +154,22 @@
                                                                 <input type="reset" class="btn btn-primary form-control">
                                                                 <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>
                                                           </div>
-                                                </form>
 
+
+                                                        <span class = "icon-bar" id = "js-question_id"></span>
+                                                        <span class = "icon-bar" id = "js-answer_id"></span>
+                                                </form>
                                             </div>
                                           </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments">
+{#                                        评论区#}
+                                        <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments-comments">
                                             {% for comment in question.question_comments %}
-                                                <div>
-                                                    <div>
+                                                <div class = "col-md-offset-1">
+                                                    <div >
                                                         <a href="#">
                                                             <img src="/static/images/logo.ico" class = "small_logo">
                                                         </a>
@@ -159,6 +185,65 @@
                                                         </span>
                                                     </div>
                                                     {{ comment.content }}
+                                                </div>
+                                            {% endfor %}
+                                        </span>
+
+{#                                        回答区#}
+                                         <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments-anwsers">
+                                            {% for answer in question.answers %}
+                                                <div>
+                                                    <div >
+                                                        <a href="#">
+                                                            <img src="/static/images/logo.ico" class = "small_logo">
+                                                        </a>
+
+                                                        <span>
+                                                            <a href = "#">
+                                                                {{ answer.username }}
+                                                            </a>
+                                                        </span>
+
+                                                        <span>
+                                                            {{ answer.date }}
+                                                        </span>
+
+                                                        <span>
+                                                            vote: {{ answer.num_vote }}
+                                                        </span>
+
+                                                        <!-- Button trigger modal -->
+                                                        <a data-toggle="modal" data-target="#myModal">
+                                                            <span class = "icon-bar sr-only">{{ question.question_id }}</span>
+                                                            <span class = "icon-bar sr-only">{{ answer.answer_id }}</span>
+                                                          点我回复
+                                                        </a>
+
+                                                    </div>
+                                                    {{ answer.content }}
+
+                                                     <span class = "i_am_comments" id ="js-i_am_comments-sub_comments">
+                                                        {% for comment_i in answer.answer_comments %}
+                                                            <div  class = "col-md-offset-1">
+                                                                <div >
+                                                                    <a href="#">
+                                                                        <img src="/static/images/logo.ico" class = "small_logo">
+                                                                    </a>
+
+                                                                    <span>
+                                                                        <a href = "#">
+                                                                            {{ comment_i.username }}
+                                                                        </a>
+                                                                    </span>
+
+                                                                    <span>
+                                                                        {{ comment_i.date }}
+                                                                    </span>
+                                                                </div>
+                                                                {{ comment_i.content }}
+                                                            </div>
+                                                        {% endfor %}
+                                                    </span>
                                                 </div>
                                             {% endfor %}
                                         </span>
@@ -188,16 +273,14 @@
                           </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
+         </div>
+    </div>
 {% endblock %}
 
 {% block js %}
 <script type="text/javascript">
 {#    window.uid =  {{ 当前用户id }}#}
-    window.uid =  3;
+    window.uid =  2;
     window.username = "zhyh2010";
 </script>
 <script type="text/javascript" src="/static/js/player.js"></script>
