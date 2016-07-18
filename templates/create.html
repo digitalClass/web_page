@@ -10,17 +10,19 @@
     <!--注册表单-->
     <div class="container login_form">
         <div class = "col-md-offset-2 col-md-8">
-            <form action="registration_form_submit" method="post" accept-charset="utf-8">
-                <div class="form-group">
-                    <label for="coursename">课程名称</label>
-                    <input type="text" class="form-control" name="coursename" placeholder="课程名称">
-                </div>
+            <form action="." method="post" accept-charset="utf-8">
+              {% if form.errors  %}
+              {% include "users/partials/errors.html" %}
+              {% endif %}
 
-                <div class="form-group">
-                    <label for="description">课程简介</label>
-                    <input type="text" class="form-control" name="description" placeholder="课程简介" class="col-xs-12 col-sm-6">
-                </div>
                <!--记住我, 先保留着 -->
+		 {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" textalign="left">
+                  {% include "users/partials/field.html" %}
+              </div>
+              {% endfor %}
+
               <!--<div class="checkbox">-->
                 <!--<label>-->
                   <!--<input type="checkbox"> Check me out-->
