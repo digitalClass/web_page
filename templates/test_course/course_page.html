@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}创建新的课堂{% endblock %}
+{% block css %}
+    <link href="/static/css/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{%if user %}
+
+<head>
+{{user.username}}         
+这里不欢迎你
+哈哈哈哈哈
+</head>
+
+{%endif%}
+<li>{{course.id }}</li>
+<li>{{course.introduce }}</li>
+<li>{{course.create_time }}</li>
+<li>{{course.img_path }}</li>
+<li>{{course.title }}</li>
+<li>{{course.course_id }}</li>
+
+{%if  Is_this_course_teacher %}
+<button type="submit" class="btn btn-primary">上传PPT</button>
+{% endif %}
+
+{% endblock %}
