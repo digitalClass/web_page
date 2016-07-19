@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}编辑个人信息{% endblock %}
+
+{% block css %}
+<link href="/static/css/register.css" rel="stylesheet">
+{% endblock %}
+
+{% block logstatus %}
+<ul class = "nav navbar-nav navbar-right">
+    <li><a href="/accounts/profile/">{{username}}<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/logout/">注销</a></li>
+</ul>
+{% endblock logstatus %}
+
+
+{% block content %}
+<!---    message of the user--->
+<div class="container message">
+    <!--photo-->
+    <ul class = "nav navbar-nav navbar-left">
+        <img alt="My Photo" src="{{useravatar}}"  width="80" height="80"  class = "img-circle">
+    </ul>
+    <!--abstract-->
+    <form class="nav navbar-nav navbar-form navbar-left">
+        <h3>Welcome:{{username}}</h3>
+        <p>编辑个人信息</p>
+    </form>
+
+</div>
+
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-offset-2 col-md-8 column">
+            <form action="." method="post" accept-charset="utf-8">
+			{% csrf_token %}
+                <div class="form-group">
+                    <label for="username">修改用户名</label><input type="text" class="form-control" id="username" placeholder="new username">
+                </div>
+                <div class="form-group">
+                    <label for="user_role">修改账户身份</label>
+                    <select name = "user_role" class="form-control">
+                        <option>Student</option>
+                        <option>Teacher</option>
+                        <option>TeachAssisstant</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                     <label for="student_id">学号/教工号</label>
+                    <input type="text" class="form-control" name="student_id" placeholder="SA14009001">
+                </div>
+                <div class="form-group">
+                    <label for="changepassword1">修改密码</label><input type="password" class="form-control" id="changepassword1" />
+                </div>
+                <div class="form-group">
+                    <label for="changepassword2">确认修改密码</label><input type="password" class="form-control" id="changepassword2" />
+                </div>
+                <div class="form-group">
+                    <label for="changephoto">上传头像</label><input type="file" id="changephoto" />
+                    <p class="help-block">
+                        </br>暂不支持修改绑定邮箱。
+                    </p>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" />Check me out</label>
+                </div>
+                <div align="middle"><button type="submit" class="btn btn-primary">确认修改</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
