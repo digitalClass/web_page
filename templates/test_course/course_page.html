@@ -6,22 +6,23 @@
 {% endblock %}
 
 {% block content %}
-{%if user %}
-
 <head>
-{{user.username}}         
 这里不欢迎你
 哈哈哈哈哈
+{{ppts}}
 </head>
 
-{%endif%}
+
+
+{% if course %}
+
 <li>{{course.id }}</li>
 <li>{{course.introduce }}</li>
 <li>{{course.create_time }}</li>
 <li>{{course.img_path }}</li>
 <li>{{course.title }}</li>
 <li>{{course.course_id }}</li>
-
+{%endif%}
 {%if  Is_this_course_teacher %}
 <button type="submit" class="btn btn-primary">上传PPT</button>
 {% endif %}
