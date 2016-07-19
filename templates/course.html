@@ -6,8 +6,8 @@
 {% block css %}
 {% load staticfiles %}
 		<!--course css-->
-		src="{%static "css/bootstrap-combined.min.css" %}"
-		src="{% static "css/coursestyle.css"%}"
+		<link href="/static/css/course/bootstrap-combined.min.css" rel="stylesheet">
+		<link href="/static/css/course/coursestyle.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -55,15 +55,7 @@
 		<hr/>
 		<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>
 
-{%if user %}
 
-<head>
-{{user.username}}         
-这里不欢迎你
-哈哈哈哈哈
-</head>
-
-{%endif%}
 <li>{{course.id }}</li>
 <li>{{course.introduce }}</li>
 <li>{{course.create_time }}</li>
