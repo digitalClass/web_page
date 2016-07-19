@@ -12,9 +12,6 @@
 
 {% block content %}
 	<body class="cs-body">
-		<!---------------------------导航栏------------------------------->
-		<!--自定义样式：topbg 导航栏背景；top-text 导航栏文字样式-->
-		<div class="topbg"><div class="container"><h3 class="top-text">数字化课堂系统</h3></div></div>
 		<!------------------------主体------------------------------------>
 		<div class="body">
 		<div class="container">
@@ -57,13 +54,27 @@
 		<li><a href="Chapter01.html">Chapter 6</a></li></ul>
 		<hr/>
 		<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>
-		<ul class="nav nav-list">
-		<li><a href="Chapter01.html">Chapter 1</a></li>
-		<li><a href="Chapter01.html">Chapter 2</a></li>
-		<li><a href="Chapter01.html">Chapter 3</a></li>
-		<li><a href="Chapter01.html">Chapter 4</a></li>
-		<li><a href="Chapter01.html">Chapter 5</a></li>
-		<li><a href="Chapter01.html">Chapter 6</a></li></ul>
+
+{%if user %}
+
+<head>
+{{user.username}}         
+这里不欢迎你
+哈哈哈哈哈
+</head>
+
+{%endif%}
+<li>{{course.id }}</li>
+<li>{{course.introduce }}</li>
+<li>{{course.create_time }}</li>
+<li>{{course.img_path }}</li>
+<li>{{course.title }}</li>
+<li>{{course.course_id }}</li>
+
+{%if  Is_this_course_teacher %}
+<button type="submit" class="btn btn-primary">上传PPT</button>
+{% endif %}
+
 		<hr/>
 		<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;其他资源</p>
 		<ul class="nav nav-list">
