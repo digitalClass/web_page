@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+<html>
+{% block title %}create a course{% endblock %}
+{% block css %}
+<link href="/static/css/carousel.css" rel="stylesheet">
+<link href="/static/css/index.css" rel="stylesheet">
+{% endblock %}
+
+
+<body>
+ {% block navbar %}
+    <!-- 导航条
+        ================================================== -->
+        <div class="navbar-wrapper">
+            <div class="container-fluid">
+                <!--导航条， 深色背景， 固定在顶部-->
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <!--用于固定宽度， 可以用来为包裹的内容添加一个 padding， 非占满全屏宽度-->
+                    <div class="container">
+                        <row>
+                        <div class="navbar-header col-md-offset-1">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <!--logo-->
+                            <a class="navbar-brand" href="#">
+                                <img alt="Brand" src="/static/images/logo.ico" class = "logo">
+                            </a>
+                        </div>
+
+                        <!--欢迎字符-->
+                        <div id="navbar" class="navbar-collapse collapse col-md-offset-4">
+                            <ul class="nav navbar-nav ">
+                                <p class="navbar-text">欢迎来到数字化课堂</p>
+                            </ul>
+
+                            <ul class = "nav navbar-nav navbar-right col-md-1">
+                                <li><span class="icon-bar"></span></li>
+                            </ul>
+
+                            <!--登陆注册-->
+                            {% block logstatus %}
+                            <ul class = "nav navbar-nav navbar-right">
+                                <li><a href="/accounts/logout/">注销<span class="sr-only">(current)</span></a></li>
+                                <li><a href="/accounts/profile/">个人中心</a></li>
+                            </ul>
+                            {% endblock logstatus %}
+
+
+                            <!--搜索框-->
+                            <form class="nav navbar-nav navbar-form navbar-right">
+                                <input type="text" class="form-control" placeholder="Search...">
+                            </form>
+                        </div>
+                        </row>
+                    </div>
+                </nav>
+            </div>
+
+        </div>
+        {% endblock navbar %}
+
+
+ {% block content %}
+<h1>Create a course</h1>
+{% csrf_token %}
+{% if form.errors %}
+<p style="color: red;">
+Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+<form action="" method="post">
+{% csrf_token %}
+<div class="field">
+
+{{ form.course_title.errors }}
+<label for="id_subject">Subject:</label>
+{{ form.course_title }}
+</div>
+<div class="field">
+{{ form.course_id.errors }}
+<label for="id_course_id">Course ID:</label>
+{{ form.course_id }}
+</div>
+<div class="field">
+{{ form.course_data.errors }}
+<label for="id_course_title">Introduction:</label>
+{{ form.course_data }}
+</div>
+<input type="submit" value="Submit">
+</form>
+        {% endblock content %}
+
+</body>
+

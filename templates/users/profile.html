@@ -49,31 +49,14 @@
                         </tr>
                     </thead>
                     <tbody>
-
+ 			{% for class_name, class_create_date, teacher_name in  items%}
                         <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#">高等数学</a></td>
-                            <td>2016-03-01</td>
-                            <td>吴刚</td>
+                          <th scope="row">{{forloop.counter}}</th>
+                          <td><a href="../../player/">{{class_name}}</a></td>
+                          <td>{{class_create_date}}</td>
+                          <td>{{teacher_name}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#">高等数学</a></td>
-                            <td>2016-03-01</td>
-                            <td>吴刚</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#">高等数学</a></td>
-                            <td>2016-03-01</td>
-                            <td>吴刚</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#">高等数学</a></td>
-                            <td>2016-03-01</td>
-                            <td>吴刚</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
