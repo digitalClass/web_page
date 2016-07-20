@@ -43,12 +43,12 @@
                         </tr>
                     </thead>
                     <tbody>
- 			{% for class_name, class_create_date, teacher_name in  items%}
+                        {% for course in course_list %}
                         <tr>
-                          <th scope="row">{{forloop.counter}}</th>
-                          <td><a href="../../player/">{{class_name}}</a></td>
-                          <td>{{class_create_date}}</td>
-                          <td>{{teacher_name}}</td>
+                          <th scope="row">{{course.id}}</th>
+                          <td><a href="../../player/">{{course.tittle}}</a></td>
+                          <td>{{course.create_time}}</td>
+                          <td>{{course.teacher}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
