@@ -40,14 +40,14 @@
 /*课程列表*/
 .listbox{
     position: absolute;
-    top: 120px;
+    top: 150px;
     width:100%;
     height: 800px;
 }
 
 .listbox .small_logo{
-    width : 20px;
-    height : 20px;
+    width : 32px;
+    height : 32px;
 }
 
 .text-tip{
@@ -72,11 +72,6 @@
 }
 
 .i_am_comments{
-    min-height:0px;
-    display:block;
-}
-
-.i_am_comments_box{
     min-height:50px;
     display:block;
 }
@@ -102,8 +97,8 @@
 
 /*底部页面*/
 .marketing{
-    position: absolute;
-    top:1300px;
+    /*position: absolute;*/
+
     width:100%
 }
 
