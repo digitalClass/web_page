@@ -10,20 +10,6 @@
 <link href="/static/css/coursestyle.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block logstatus %}
-{% if logined %}
-<ul class = "nav navbar-nav navbar-right">
-    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
-    <li><a href="/accounts/logout/">注销</a></li>
-</ul>
-{% else %}
-<ul class = "nav navbar-nav navbar-right">
-    <li><a href="/accounts/login/">登陆<span class="sr-only">(current)</span></a></li>
-    <li><a href="/accounts/register/">注册</a></li>
-</ul>
-{% endif %}
-{% endblock logstatus %}
-
 {% block content %}
 <body class="cs-body">
 	<!--主体-->

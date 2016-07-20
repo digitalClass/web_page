@@ -62,22 +62,31 @@
                       <p class="navbar-text">欢迎来到数字化课堂</p>
                   </ul>
 
-                    <ul class = "nav navbar-nav navbar-right col-md-1">
-                          <li><span class="icon-bar"></span></li>
-                      </ul>
+                  <ul class = "nav navbar-nav navbar-right col-md-1">
+                    <li><span class="icon-bar"></span></li>
+                  </ul>
 
-                    <!--登陆注册-->
-                    {% block logstatus %}
-                    <ul class = "nav navbar-nav navbar-right">
-                        <li><a href="/accounts/login/">登陆<span class="sr-only">(current)</span></a></li>
-                        <li><a href="/accounts/register/">注册</a></li>
-                    </ul>
-                    {% endblock logstatus %}
+                  <!--登陆注册-->
 
-                    <!--搜索框-->
-                     <form class="nav navbar-nav navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
-                      </form>
+                  {% block logstatus %}
+                  {% if logined %}
+                  <ul class = "nav navbar-nav navbar-right">
+                    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/accounts/logout/">注销</a></li>
+                  </ul>
+                  {% else %}
+                  <ul class = "nav navbar-nav navbar-right">
+                    <li><a href="/accounts/login/">登录<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/accounts/register/">注册</a></li>
+                  </ul>
+                  {% endif %}
+                  {% endblock logstatus %}
+
+
+                  <!--搜索框-->
+                  <form class="nav navbar-nav navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                  </form>
                 </div>
               </row>
              </div>

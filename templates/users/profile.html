@@ -6,19 +6,12 @@
 <link href="/static/css/profile.css" rel="stylesheet">
 {% endblock %}
 
-{% block logstatus %}
-<ul class = "nav navbar-nav navbar-right">
-    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
-    <li><a href="/accounts/logout/">注销</a></li>
-</ul>
-{% endblock logstatus %}
-
 {% block content %}
 <body>
 
-        <!---    message of the user--->
+        {# message of the user #}
             <div class="container message">
-                 <!--photo-->
+                 {# photo #}
                  <ul class = "nav navbar-nav navbar-left">
                      <img alt="My Photo" src={{useravatar}}  width="80" height="80"  class = "img-circle">
                  </ul>
