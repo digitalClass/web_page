@@ -17,8 +17,8 @@
     </ul>
     <!--abstract-->
     <form class="nav navbar-nav navbar-form navbar-left">
-        <h3>Welcome:{{username}}</h3>
-        <p>编辑个人信息</p>
+        <h3>欢迎您光临本站:{{user_name}}</h3>
+        <p>您正在编辑您的个人信息...</p>
     </form>
 
 </div>
@@ -28,45 +28,25 @@
 
     <div class="row clearfix">
         <div class="col-md-offset-2 col-md-8 column">
-            <form action="." method="post" accept-charset="utf-8">
-			{% csrf_token %}
-                <div class="form-group">
-                    <label for="username">修改用户名</label>
-					<input type="text" class="form-control" name="username" id="username" value="{{user_name}}" placeholder="{{user_name}}">
+            <form action="." method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                {% if form.errors  %}
+                {% include "users/partials/errors.html" %}
+                {% endif %}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group" textalign="left">
+                    {% include "users/partials/field.html" %}
                 </div>
-                <div class="form-group">
-                    <label for="user_role">修改账户身份</label>
-                    <select name = "user_role" class="form-control">
-                        <option>Student</option>
-                        <option>Teacher</option>
-                        <option>TeachAssisstant</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                     <label for="student_id">学号/教工号</label>
-                    <input type="text" class="form-control" name="student_id" value="{{student_id}}" placeholder="{{student_id}}">
-                </div>
-                <div class="form-group">
-                    <label for="password">修改密码</label>
-					<input type="password" name="password1" class="form-control" id="changepassword1" >
-                </div>
-                <div class="form-group">
-                    <label for="password">确认修改密码</label>
-					<input type="password" name="password2" class="form-control" id="changepassword2" >
-                </div>
-                <div class="form-group">
-                    <label for="useravatar">上传头像</label><input type="file" id="useravatar" >
-                    <p class="help-block">
-                        </br>暂不支持修改绑定邮箱。
-                    </p>
-                </div>
-                <!--<div class="checkbox">-->
-                 <!--   <label><input type="checkbox" />Check me out</label>-->
-                <!--</div>-->
-                <div align="middle"><a href="../profile"><button type="submit" class="btn btn-primary">确认修改</button></a></div>
-            </form>
+                {% endfor %}
+                <p class="help-block">
+                </br>暂不支持修改绑定邮箱。
+                </p>
+                <a href="../profile"><button type="submit" class="btn btn-primary">确认修改</button></a>
         </div>
+        <div></div>
+            </form>
     </div>
+</div>
 </div>
 
 {% endblock %}
