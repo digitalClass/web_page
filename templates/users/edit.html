@@ -4,13 +4,21 @@
 
 {% block css %}
 <link href="/static/css/register.css" rel="stylesheet">
+<link href="/static/css/profile.css" rel="stylesheet">
 {% endblock %}
 
 {% block logstatus %}
+{% if logined %}
 <ul class = "nav navbar-nav navbar-right">
-    <li><a href="/accounts/profile/">{{username}}<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
     <li><a href="/accounts/logout/">注销</a></li>
 </ul>
+{% else %}
+<ul class = "nav navbar-nav navbar-right">
+    <li><a href="/accounts/login/">登陆<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/register/">注册</a></li>
+</ul>
+{% endif %}
 {% endblock logstatus %}
 
 
@@ -19,7 +27,7 @@
 <div class="container message">
     <!--photo-->
     <ul class = "nav navbar-nav navbar-left">
-        <img alt="My Photo" src="{{useravatar}}"  width="80" height="80"  class = "img-circle">
+        <img alt="My Photo" src="/media/digitalClass/{{useravatar}}"  width="80" height="80"  class = "img-circle">
     </ul>
     <!--abstract-->
     <form class="nav navbar-nav navbar-form navbar-left">
@@ -37,7 +45,8 @@
             <form action="." method="post" accept-charset="utf-8">
 			{% csrf_token %}
                 <div class="form-group">
-                    <label for="username">修改用户名</label><input type="text" class="form-control" id="username" placeholder="new username">
+                    <label for="username">修改用户名</label>
+					<input type="text" class="form-control" name="username" id="username" value="{{user_name}}" placeholder="{{user_name}}">
                 </div>
                 <div class="form-group">
                     <label for="user_role">修改账户身份</label>
@@ -49,16 +58,18 @@
                 </div>
                 <div class="form-group">
                      <label for="student_id">学号/教工号</label>
-                    <input type="text" class="form-control" name="student_id">
+                    <input type="text" class="form-control" name="student_id" value="{{student_id}}" placeholder="{{student_id}}">
                 </div>
                 <div class="form-group">
-                    <label for="password">修改密码</label><input type="password" class="form-control" id="changepassword1" />
+                    <label for="password">修改密码</label>
+					<input type="password" name="password1" class="form-control" id="changepassword1" >
                 </div>
                 <div class="form-group">
-                    <label for="password">确认修改密码</label><input type="password" class="form-control" id="changepassword2" />
+                    <label for="password">确认修改密码</label>
+					<input type="password" name="password2" class="form-control" id="changepassword2" >
                 </div>
                 <div class="form-group">
-                    <label for="useravatar">上传头像</label><input type="file" id="useravatar" />
+                    <label for="useravatar">上传头像</label><input type="file" id="useravatar" >
                     <p class="help-block">
                         </br>暂不支持修改绑定邮箱。
                     </p>
