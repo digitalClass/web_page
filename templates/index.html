@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %}欢迎来到数字化课堂{% endblock %}
+
+{% block logstatus %}
+{% if logined %}
+<ul class = "nav navbar-nav navbar-right">
+    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/logout/">注销</a></li>
+</ul>
+{% else %}
+<ul class = "nav navbar-nav navbar-right">
+    <li><a href="/accounts/login/">登陆<span class="sr-only">(current)</span></a></li>
+    <li><a href="/accounts/register/">注册</a></li>
+</ul>
+{% endif %}
+{% endblock logstatus %}
+
 {% block css %}
     <link href="/static/css/carousel.css" rel="stylesheet">
     <link href="/static/css/index.css" rel="stylesheet">
