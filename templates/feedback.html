@@ -1,8 +1,10 @@
 {% extends "base.html"%}
 {% block content %}
-	<form method="post">
-		{% csrf_token %}
-		<input type="textarea" name="content"><br>
-		<input type="submit" name="submit">
-	</form>
+	<div class="container">
+		<form method="post">
+			{% csrf_token %}
+			<textarea  rows="8" cols="60" name="content">请输入您的反馈内容...</textarea><br>
+			<input type="submit" name="submit">
+		</form>
+	</div>
 {% endblock %}
