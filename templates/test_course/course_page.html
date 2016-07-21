@@ -34,9 +34,10 @@
 
 
 {%if  Is_this_course_teacher %}
-<a>你是门课的老师！你可以选择</a>
-<div class = "col-md-offset-2 col-md-8">
-    <a href="/course/"+string(course.id)+"/ppt_upload">上传ppt</a>
+<div class = "col-md-offset-20 col-md-8">
+<a>你是门课的老师！你可以选择:
+</a>
+   <a href="/course_test/{{course.id}}/ppt_upload">上传ppt</a>
 </div> 
 {% endif %}
 

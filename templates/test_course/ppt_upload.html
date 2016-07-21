@@ -8,11 +8,11 @@
 {% block content %}
 
     <!--注册表单-->
-    <div class = "col-md-offset-2 col-md-8">
-        <form action="." method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            {% if form.errors  %}
-            {% include "users/partials/errors.html" %}
-            {% endif %}
+        <div class = "col-md-offset-2 col-md-8">
+            <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+              {% if form.errors  %}
+              {% include "users/partials/errors.html" %}
+              {% endif %}
 
             <!--记住我, 先保留着 -->
             {% csrf_token %}
