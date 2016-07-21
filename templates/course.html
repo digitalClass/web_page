@@ -30,21 +30,35 @@
 								</div>
                                 <div class="col-md-10 follow-icn">
                                     {% ifequal user_role 'st' %}
+                                    {#学生#}
+                                    {% if Is_subscribed %}
+                                    <form action="." method="post" accept-charset="utf-8">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="subscribed_status_changed" value=True >
+                                        <button type="submit" class="btn btn-primary">取消订阅</button>
+                                    </form>
+                                    {% else %}
                                     <form action="." method="post" accept-charset="utf-8">
                                         {% csrf_token %}
                                         <input type="hidden" name="subscribed_status_changed" value=True >
                                         <button type="submit" class="btn btn-primary">订阅</button>
                                     </form>
+                                    {% endif %}
+
                                     {% else %}
                                     {% ifequal user_role 'te'  %}
+                                    {% if Is_this_course_teacher %}
+                                    <p>您是这门课的老师,您可以:</p>
+                                    {#老师#}
                                     <div class="col-md-10 ">
                                         <a href="ppt_upload" class="button
                                         cs-cont-manage-icn">上传课件</a>
                                     </div>
+                                    {% endif %}
                                     {% else %}
                                     {#匿名用户#}
                                         <button type="submit" class="btn btn-primary"><a
-                                                              href="/accounts/login/?next=here">订阅</a></button>
+                                                              href="/accounts/login/?next=/course/{{course.id}}">订阅</a></button>
                                     {% endifequal %}
                                     {% endifequal %} 
                                 </div>
