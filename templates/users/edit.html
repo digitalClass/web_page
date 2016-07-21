@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}编辑个人信息{% endblock %}
+
+{% block css %}
+<link href="/static/css/register.css" rel="stylesheet">
+<link href="/static/css/profile.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<!---    message of the user--->
+<div class="container message">
+    <!--photo-->
+    <ul class = "nav navbar-nav navbar-left">
+        <img alt="My Photo" src="/media/{{useravatar}}"  width="80" height="80"  class = "img-circle">
+    </ul>
+    <!--abstract-->
+    <form class="nav navbar-nav navbar-form navbar-left">
+        <h3>欢迎您光临本站:{{user_name}}</h3>
+        <p>您正在编辑您的个人信息...</p>
+    </form>
+
+</div>
+
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-offset-2 col-md-8 column">
+            <form action="." method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                {% if form.errors  %}
+                {% include "users/partials/errors.html" %}
+                {% endif %}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group" textalign="left">
+                    {% include "users/partials/field.html" %}
+                </div>
+                {% endfor %}
+                <p class="help-block">
+                </br>暂不支持修改绑定邮箱。
+                </p>
+                <a href="../profile"><button type="submit" class="btn btn-primary">确认修改</button></a>
+        </div>
+        <div></div>
+            </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

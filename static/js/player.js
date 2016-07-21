@@ -10,6 +10,130 @@ $(function(){
     var myDate = new Date();
     var current_element =  new Object();
 
+    // 获取路径url信息
+    var url = window.location.pathname;
+    var words = url.split("/");
+    var course_id = words[2];
+    var ppt_file_title = words[3];
+    var ppt_slice_id = words[4];
+
+    //$('.js-answer-comments-diaplay').first().removeClass("sr-only");
+
+    function i_am_comments(){
+        $(".js-question_areas").mousemove(function(e){
+            $(".js-i_am_comments").parent().next().addClass("sr-only");
+            var target = $(this).find(".js-i_am_comments").parent().next();
+            $(target).removeClass("sr-only");
+        });
+        $(".js-question_areas").mouseout(function(e){
+            $(".js-i_am_comments").parent().next().addClass("sr-only");
+        });
+    }
+
+    //测试效果不好，乱动
+    //function i_am_comments_beta(){
+    //    $(".js-question_areas").mouseenter(function(e){
+    //        $(".js-i_am_comments").parent().next().slideUp(500);
+    //        var target = $(this).find(".js-i_am_comments").parent().next();
+    //        $(target).slideDown(500);
+    //    });
+    //    $(".js-question_areas").mouseleave(function(e){
+    //        $(".js-i_am_comments").parent().next().slideUp(500);
+    //    });
+    //}
+    i_am_comments();
+
+    //点赞
+    function thumb_up(){
+        $(".js-glyphicon-thumbs-up-question").unbind();
+        $(".js-glyphicon-thumbs-up-question").click(function(e){
+            var vote = $(this);
+            var ids = $(this).parent().parent().parent().prev().find(".icon-bar");
+            var question_id = ids[0].textContent;
+            var answer_id = ids[1].textContent;
+            console.log("question_id" + question_id + "\tanswer_id" + answer_id);
+
+            var csrftoken = getCookie('csrftoken');
+            $.ajaxSetup({
+                        beforeSend: function(xhr, settings) {
+                                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                                                                    }
+                                                                        }
+            });
+
+            $.ajax({
+                url: '/addvote/',
+                type: 'post',
+                dataType: 'json',
+                data: {question_id: question_id, answer_id:answer_id, course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
+            }).done(function (oResult){
+                if (oResult.code != 0){
+                    return alert(oResult.msg || '点赞失败， 请稍后重试');
+                }
+
+                var text = $(vote).text();
+                var num = parseInt(text, 10);
+                $(vote).text(num + 1);
+
+            }).fail(function (oResult){
+                alert(oResult.msg || '点赞失败，请稍后重试');
+            }).always(function () {
+                    bSubmit = false;
+            });
+        })
+
+        $(".js-glyphicon-thumbs-up-anwsers").unbind();
+        $(".js-glyphicon-thumbs-up-anwsers").click(function(e){
+            var vote = $(this);
+            var ids = $(this).parent().prev().find(".icon-bar");
+            var question_id = ids[0].textContent;
+            var answer_id = ids[1].textContent;
+            console.log("question_id" + question_id + "\tanswer_id" + answer_id);
+
+            var csrftoken = getCookie('csrftoken');
+            $.ajaxSetup({
+                        beforeSend: function(xhr, settings) {
+                                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                                                                    }
+                                                                        }
+            });
+
+            $.ajax({
+                url: '/addvote/',
+                type: 'post',
+                dataType: 'json',
+                data: {question_id: question_id, answer_id:answer_id, course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
+            }).done(function (oResult){
+                if (oResult.code != 0){
+                    return alert(oResult.msg || '点赞失败， 请稍后重试');
+                }
+
+                var text = $(vote).text();
+                var num = parseInt(text, 10);
+                $(vote).text(num + 1);
+
+            }).fail(function (oResult){
+                alert(oResult.msg || '点赞失败，请稍后重试');
+            }).always(function () {
+                    bSubmit = false;
+            });
+        })
+    }
+
+    thumb_up();
+
+    // 时间显示修正
+    var formatDate = function (date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        return y + '年' + m + '月' + d + '日';
+    };
+    var myDate = formatDate(myDate1);
 
     $('#myModal').on('shown.bs.modal', function (e) {
       // do something...
@@ -86,7 +210,7 @@ $(function(){
 
                 var sHtml = [
                 '<li>' +
-                '<div class = "panel panel-primary">' +
+                '<div class = "panel panel-primary js-question_areas">' +
                 '                                    <div>' +
                 '                                        <a href="#">' +
                 '                                            <img src="/static/images/logo.ico" class = "small_logo">' +
@@ -231,6 +355,51 @@ $(function(){
     });
 
     // ppt 部分
+    var right = $(".js-carousel-right")[0];
+    var ppt_id = parseInt(ppt_slice_id, 10) + 1;
+    var new_href = $(right)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+    $(right).attr("href", new_href);
+
+    var left = $(".js-carousel-left")[0];
+    var ppt_id = parseInt(ppt_slice_id, 10) - 1;
+    var new_href = $(left)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+    $(left).attr("href", new_href);
+
+    //$(".js-carousel-right").click(function(e){
+    //    var index = $(".js-ppt_index");
+    //    //var img_url = $(".js-ppt_url");
+    //    var ppt_index = parseInt(index[0].textContent, 10) + 1;
+    //
+    //    var csrftoken = getCookie('csrftoken');
+    //
+    //    $.ajaxSetup({
+    //                beforeSend: function(xhr, settings) {
+    //                                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+    //                                                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    //                                                            }
+    //                                                                }
+    //    });
+    //
+    //    $.ajax({
+    //        url: '/requestPPT/',
+    //        type: 'post',
+    //        dataType: 'json',
+    //        data: {index: ppt_index, course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
+    //    }).done(function (oResult){
+    //        //if (oResult.code != 0){
+    //        //    return alert(oResult.msg || '页面跳转请求失败， 请稍后重试');
+    //        //}
+    //
+    //        //index.text(oResult.index);
+    //        //img_url.text(oResult.img_path);
+    //
+    //    }).fail(function (oResult){
+    //        alert(oResult.msg || '页面跳转请求失败，请稍后重试');
+    //    }).always(function () {
+    //            bSubmit = false;
+    //    });
+    //});
+
 
 })
 
