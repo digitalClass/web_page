@@ -36,11 +36,17 @@
                                         <button type="submit" class="btn btn-primary">订阅</button>
                                     </form>
                                     {% else %}
+                                    {% ifequal user_role 'te'  %}
                                     <div class="col-md-10 ">
                                         <a href="ppt_upload" class="button
                                         cs-cont-manage-icn">上传课件</a>
                                     </div>
+                                    {% else %}
+                                    {#匿名用户#}
+                                        <button type="submit" class="btn btn-primary"><a
+                                                              href="/accounts/login/?next=here">订阅</a></button>
                                     {% endifequal %}
+                                    {% endifequal %} 
                                 </div>
 							</div>
 						</div>
@@ -87,12 +93,11 @@
 												</div>
 											</div>
 											<ul class="nav nav-list">
-												<li><a href="/classroom/1/ch01/1">Chapter 1</a></li>
-												<li><a href="Chapter01.html">Chapter 2</a></li>
-												<li><a href="Chapter01.html">Chapter 3</a></li>
-												<li><a href="Chapter01.html">Chapter 4</a></li>
-												<li><a href="Chapter01.html">Chapter 5</a></li>
-												<li><a href="Chapter01.html">Chapter 6</a></li>
+                                                {% for ppt in ppts %}
+                                                {#默认跳到ppt的第一页#}
+                                                <li><a href="/classroom/{{course.id}}/{{ppt}}/1">{{ppt}}</a>&nbsp;&nbsp;
+                                                    {{ppt.introduce}} &nbsp;上传时间:{{ppt.upload_time}}</li>
+                                                {% endfor %}
 											</ul>
 											<hr/>
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>

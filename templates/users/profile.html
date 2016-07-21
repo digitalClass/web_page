@@ -30,7 +30,7 @@
 		<div class="container ">
             <div class="panel panel-default col-md-offset-1 col-md-12">
                 <!-- Default panel contents -->
-                <div class="panel-heading">课程列表</div>
+                <div class="panel-heading">我的课程</div>
 
                 <!-- Table -->
                 <table class="table table-hover">
@@ -46,7 +46,7 @@
                         {% for course in course_list %}
                         <tr>
                           <th scope="row">{{course.id}}</th>
-                          <td><a href="../../player/">{{course.tittle}}</a></td>
+                          <td><a href="../../player/">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher}}</td>
                         </tr>
