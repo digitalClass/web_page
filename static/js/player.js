@@ -41,9 +41,17 @@ $(function(){
     //$('.js-answer-comments-diaplay').first().removeClass("sr-only");
 
     $(".js-btn_go").click(function (e){
-        var pageid = $(".js-ppt_slices_data_index").val()
-        var new_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + words[1] + "/" + course_id + "/" + ppt_file_title + "/" + pageid;
-        window.location.assign(new_url);
+        var pageid = $(".js-ppt_slices_data_index").val();
+        var right_limit = $(".js-ppt_total_page")[0].textContent;
+        var right_limit_num = parseInt(right_limit, 10);
+        if (pageid > 0 && pageid <= right_limit_num){
+            var new_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + words[1] + "/" + course_id + "/" + ppt_file_title + "/" + pageid;
+            window.location.assign(new_url);
+        }
+        else{
+            alert("超出ppt范围");
+        }
+
     });
 
     function i_am_comments(){
@@ -372,13 +380,27 @@ $(function(){
     // ppt 部分
     var right = $(".js-carousel-right")[0];
     var ppt_id = parseInt(ppt_slice_id, 10) + 1;
-    var new_href = $(right)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
-    $(right).attr("href", new_href);
+    var right_limit = $(".js-ppt_total_page")[0].textContent;
+    var right_limit_num = parseInt(right_limit, 10);
+    if (ppt_id <= right_limit_num){
+        var new_href = $(right)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+        $(right).attr("href", new_href);
+    }
+    else{
+        $(right).attr("href", "#");
+    }
+
 
     var left = $(".js-carousel-left")[0];
     var ppt_id = parseInt(ppt_slice_id, 10) - 1;
-    var new_href = $(left)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
-    $(left).attr("href", new_href);
+    if (ppt_id > 0){
+        var new_href = $(left)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+        $(left).attr("href", new_href);
+    }
+    else{
+        $(left).attr("href", "#");
+    }
+
 
     //$(".js-carousel-right").click(function(e){
     //    var index = $(".js-ppt_index");

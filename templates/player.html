@@ -56,6 +56,7 @@
                             <span class="sr-only">Previous</span>
                           </a>
                               <span class = "sr-only js-ppt_index">{{ ppt_slices_data.index }}</span>
+                              <span class = "sr-only js-ppt_total_page">{{ ppt_slices_data.ppt_total_page }}</span>
                           <a class="right carousel-control js-carousel-right" href="#myCarousel" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
@@ -63,12 +64,12 @@
                         </div><!-- /.carousel -->
                         </div>
 
-                        <div class = "col-md-10 col-md-offset-4">
+                        <div class = "col-md-11 col-md-offset-3">
                             <div class="input-group">
                                         <div class = "col-md-3 nav-jump-go">
                                             <h1>跳转到</h1>
                                         </div>
-                                        <div class = "col-md-2">
+                                        <div class = "col-md-4">
                                             <input type="text" class="form-control js-ppt_slices_data_index" placeholder="{{ ppt_slices_data.index }}" value = "{{ ppt_slices_data.index }}">
                                         </div>
                                       <span class="input-group-btn col-md-1">
