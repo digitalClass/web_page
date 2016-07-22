@@ -88,6 +88,28 @@
                                     <span class = "icon-bar sr-only">{{ -5 }}</span>
                                   点我提问
                                 </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <form>
+                                                            <label class="form-control">提交评论</label>
+                                                              <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>
+
+                                                              <div class = "form-group">
+                                                                    <input type="reset" class="btn btn-primary form-control">
+                                                                    <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>
+                                                              </div>
+
+
+                                                            <span class = "icon-bar sr-only" id = "js-question_id"></span>
+                                                            <span class = "icon-bar sr-only" id = "js-answer_id"></span>
+                                                    </form>
+                                                </div>
+                                              </div>
+                                            </div>
+
                                 {% for question in question_data %}
                                 <li>
                                     <div class = "panel panel-primary js-question_areas">
@@ -133,26 +155,26 @@
 
     {#                                        <a class = "col-md-offset-8" id = "js-feedback-{{ forloop.counter }}" href="#"></a>#}
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <form>
-                                                            <label class="form-control">提交评论</label>
-                                                              <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>
-
-                                                              <div class = "form-group">
-                                                                    <input type="reset" class="btn btn-primary form-control">
-                                                                    <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>
-                                                              </div>
-
-
-                                                            <span class = "icon-bar sr-only" id = "js-question_id"></span>
-                                                            <span class = "icon-bar sr-only" id = "js-answer_id"></span>
-                                                    </form>
-                                                </div>
-                                              </div>
-                                            </div>
+{#                                            <!-- Modal -->#}
+{#                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+{#                                              <div class="modal-dialog" role="document">#}
+{#                                                <div class="modal-content">#}
+{#                                                    <form>#}
+{#                                                            <label class="form-control">提交评论</label>#}
+{#                                                              <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>#}
+{##}
+{#                                                              <div class = "form-group">#}
+{#                                                                    <input type="reset" class="btn btn-primary form-control">#}
+{#                                                                    <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>#}
+{#                                                              </div>#}
+{##}
+{##}
+{#                                                            <span class = "icon-bar sr-only" id = "js-question_id"></span>#}
+{#                                                            <span class = "icon-bar sr-only" id = "js-answer_id"></span>#}
+{#                                                    </form>#}
+{#                                                </div>#}
+{#                                              </div>#}
+{#                                            </div>#}
                                         </div>
 
 

@@ -160,7 +160,7 @@ $(function(){
         d = d < 10 ? ('0' + d) : d;
         return y + '年' + m + '月' + d + '日';
     };
-    var myDate = formatDate(myDate);
+    var myDate = formatDate(myDate1);
 
     $('#myModal').on('shown.bs.modal', function (e) {
       // do something...
@@ -174,6 +174,7 @@ $(function(){
     });
 
     // 讨论区业务逻辑
+    bSubmit = false;
     $("#js-mysubmit").on("click", function () {
         var question_id_t = $("#js-question_id").text();
         var question_id = parseInt(question_id_t, 10);
@@ -208,7 +209,7 @@ $(function(){
         $.ajax({
             url: '/addcomments/',
             type: 'post',
-            data: {content: content, question_id: question_id, answer_id:answer_id, course_id : 3, ppt_file_title:"ch1", ppt_slice_id:1}
+            data: {content: content, question_id: question_id, answer_id:answer_id,course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
         }).done(function (oResult){
             if (oResult.code != 0){
                 return alert(oResult.msg || '提交失败， 请稍后重试');
