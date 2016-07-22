@@ -28,9 +28,40 @@
 								<div class="col-md-2 text-bg">
 									<h3>{{course.title}}</h3>
 								</div>
-								<div class="col-md-10 follow-icn">
-									<a href="#" class="button ">订阅</a>
-								</div>
+                                <div class="col-md-10 follow-icn">
+                                    {% ifequal user_role 'st' %}
+                                    {#学生#}
+                                    {% if Is_subscribed %}
+                                    <form action="." method="post" accept-charset="utf-8">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="subscribed_status_changed" value=True >
+                                        <button type="submit" class="btn btn-primary">取消订阅</button>
+                                    </form>
+                                    {% else %}
+                                    <form action="." method="post" accept-charset="utf-8">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="subscribed_status_changed" value=True >
+                                        <button type="submit" class="btn btn-primary">订阅</button>
+                                    </form>
+                                    {% endif %}
+
+                                    {% else %}
+                                    {% ifequal user_role 'te'  %}
+                                    {% if Is_this_course_teacher %}
+                                    <p>您是这门课的老师,您可以:</p>
+                                    {#老师#}
+                                    <div class="col-md-10 ">
+                                        <a href="ppt_upload" class="button
+                                        cs-cont-manage-icn">上传课件</a>
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    {#匿名用户#}
+                                        <button type="submit" class="btn btn-primary"><a
+                                                              href="/accounts/login/?next=/course/{{course.id}}">订阅</a></button>
+                                    {% endifequal %}
+                                    {% endifequal %} 
+                                </div>
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -73,18 +104,14 @@
 													<div class="col-md-2 cs-panel-title">
 														<p>课件列表</p>
 													</div>
-													<div class="col-md-10 ">
-														<a href="#" class="button cs-cont-manage-icn">管理</a>
-													</div>
 												</div>
 											</div>
 											<ul class="nav nav-list">
-												<li><a href="Chapter01.html">Chapter 1</a></li>
-												<li><a href="Chapter01.html">Chapter 2</a></li>
-												<li><a href="Chapter01.html">Chapter 3</a></li>
-												<li><a href="Chapter01.html">Chapter 4</a></li>
-												<li><a href="Chapter01.html">Chapter 5</a></li>
-												<li><a href="Chapter01.html">Chapter 6</a></li>
+                                                {% for ppt in ppts %}
+                                                {#默认跳到ppt的第一页#}
+                                                <li><a href="/classroom/{{course.id}}/{{ppt}}/1">{{ppt}}</a>&nbsp;&nbsp;
+                                                    {{ppt.introduce}} &nbsp;上传时间:{{ppt.upload_time}}</li>
+                                                {% endfor %}
 											</ul>
 											<hr/>
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>

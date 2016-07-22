@@ -9,16 +9,19 @@
 {% block content %}
 <body>
 
-        <!---    message of the user--->
+        {# message of the user #}
             <div class="container message">
-                 <!--photo-->
+                 {# photo #}
                  <ul class = "nav navbar-nav navbar-left">
-                     <img alt="My Photo" src={{useravatar}}  width="80" height="80"  class = "img-circle">
+                     <img alt="My Photo" src=/media/{{useravatar}}  width="80" height="80"  class = "img-circle">
                  </ul>
                  <!--abstract-->
                  <form class="nav navbar-nav navbar-form navbar-left">
-                     <h3>Welcome:{{username}}</h3>
+                     <h3>Welcome:{{user_name}}</h3>
                      <p>中国科学技术大学</p>
+                     <li><a href="/accounts/edit/">修改个人信息</a></li>
+                     <li><a href="/accounts/password_change_form/">修改登录密码</a></li>
+                     
                  </form>
 
             </div>
@@ -29,25 +32,25 @@
 		<div class="container ">
             <div class="panel panel-default col-md-offset-1 col-md-12">
                 <!-- Default panel contents -->
-                <div class="panel-heading">课程列表</div>
+                <div class="panel-heading">我的课程</div>
 
                 <!-- Table -->
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>序号</th>
+                            <th>课程ID</th>
                             <th>课程名称</th>
                             <th>开课时间</th>
                             <th>开课老师</th>
                         </tr>
                     </thead>
                     <tbody>
- 			{% for class_name, class_create_date, teacher_name in  items%}
+                        {% for course in course_list %}
                         <tr>
-                          <th scope="row">{{forloop.counter}}</th>
-                          <td><a href="../../player/">{{class_name}}</a></td>
-                          <td>{{class_create_date}}</td>
-                          <td>{{teacher_name}}</td>
+                          <th scope="row">{{course.id}}</th>
+                          <td><a href="../../player/">{{course.title}}</a></td>
+                          <td>{{course.create_time}}</td>
+                          <td>{{course.teacher}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

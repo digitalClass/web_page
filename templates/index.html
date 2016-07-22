@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}欢迎来到数字化课堂{% endblock %}
+
 {% block css %}
     <link href="/static/css/carousel.css" rel="stylesheet">
     <link href="/static/css/index.css" rel="stylesheet">
@@ -48,11 +49,19 @@
               <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th><a href="/course/1">课程名称</a></th>
+                      <th>课程ID</th>
+                      <th>课程名称</th>
                       <th>开课时间</th>
                       <th>开课老师</th>
                     </tr>
+                      {% for course in courses %}
+                    <tr>
+                        <th>{{course.id}}</th>
+                        <th><a href=/course/{{course.id}}>{{course.title}}</a></th>
+                      <th>开课时间</th>
+                      <th>开课老师</th>
+                    </tr>
+                      {% endfor %}
                   </thead>
                   <tbody>
                     {% comment %}
