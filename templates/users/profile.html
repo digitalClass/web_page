@@ -48,7 +48,7 @@
                         {% for course in course_list %}
                         <tr>
                           <th scope="row">{{course.id}}</th>
-                          <td><a href="../../player/">{{course.title}}</a></td>
+                          <td><a href="/course/{{course.id}}">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher}}</td>
                         </tr>
