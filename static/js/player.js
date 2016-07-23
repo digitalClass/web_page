@@ -3,11 +3,32 @@
  */
 
 $(function(){
+        // using jQuery
+    function getCookie(name) {
+                var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                                    var cookies = document.cookie.split(';');
+                                            for (var i = 0; i < cookies.length; i++) {
+                                                                var cookie = jQuery.trim(cookies[i]);
+                                                                            // Does this cookie string begin with the name we want?
+                                                                                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                                                                                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                                                                                                break;
+                                                                                                                                            }
+                                                                                                                                                    }
+                                                                                                                                                        }
+                                                                                                                                                            return cookieValue;
+    }
+    function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
     var that = this;
 
     var bSubmit = false;
     var username = window.username;
-    var myDate = new Date();
+    var myDate1 = new Date();
     var current_element =  new Object();
 
     // 获取路径url信息
@@ -19,13 +40,27 @@ $(function(){
 
     //$('.js-answer-comments-diaplay').first().removeClass("sr-only");
 
+    $(".js-btn_go").click(function (e){
+        var pageid = $(".js-ppt_slices_data_index").val();
+        var right_limit = $(".js-ppt_total_page")[0].textContent;
+        var right_limit_num = parseInt(right_limit, 10);
+        if (pageid > 0 && pageid <= right_limit_num){
+            var new_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + words[1] + "/" + course_id + "/" + ppt_file_title + "/" + pageid;
+            window.location.assign(new_url);
+        }
+        else{
+            alert("超出ppt范围");
+        }
+
+    });
+
     function i_am_comments(){
-        $(".js-question_areas").mousemove(function(e){
+        $(".js-question_areas").mouseenter(function(e){
             $(".js-i_am_comments").parent().next().addClass("sr-only");
             var target = $(this).find(".js-i_am_comments").parent().next();
             $(target).removeClass("sr-only");
         });
-        $(".js-question_areas").mouseout(function(e){
+        $(".js-question_areas").mouseleave(function(e){
             $(".js-i_am_comments").parent().next().addClass("sr-only");
         });
     }
@@ -144,16 +179,22 @@ $(function(){
         $("#js-answer_id").text(answer_id);
         console.log(answer_id);
         current_element = e.relatedTarget;
-    })
+    });
 
     // 讨论区业务逻辑
+    bSubmit = false;
     $("#js-mysubmit").on("click", function () {
         var question_id_t = $("#js-question_id").text();
         var question_id = parseInt(question_id_t, 10);
-        console.log(question_id);
         var answer_id_t = $("#js-answer_id").text();
         var answer_id = parseInt(answer_id_t, 10);
-        console.log(answer_id);
+
+        // 获取路径url信息
+        var url = window.location.pathname;
+        var words = url.split("/");
+        var course_id = words[2];
+        var ppt_file_title = words[3];
+        var ppt_slice_id = words[4];
 
         var content = $("#js-mycontent").val();
         if (!content){
@@ -164,27 +205,7 @@ $(function(){
         }
         bSubmit = true;
 
-		// using jQuery
-		function getCookie(name) {
-				    var cookieValue = null;
-					    if (document.cookie && document.cookie != '') {
-								        var cookies = document.cookie.split(';');
-										        for (var i = 0; i < cookies.length; i++) {
-														            var cookie = jQuery.trim(cookies[i]);
-																	            // Does this cookie string begin with the name we want?
-																				            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-																									                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-																													                break;
-																																	            }
-																																				        }
-																																						    }
-																																							    return cookieValue;
-		}
 		var csrftoken = getCookie('csrftoken');
-		function csrfSafeMethod(method) {
-				    // these HTTP methods do not require CSRF protection
-					    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-		}
 		$.ajaxSetup({
 				    beforeSend: function(xhr, settings) {
 							        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -196,8 +217,7 @@ $(function(){
         $.ajax({
             url: '/addcomments/',
             type: 'post',
-            dataType: 'json',
-            data: {content: content, question_id: question_id, answer_id:answer_id}
+            data: {content: content, question_id: question_id, answer_id:answer_id,course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
         }).done(function (oResult){
             if (oResult.code != 0){
                 return alert(oResult.msg || '提交失败， 请稍后重试');
@@ -222,9 +242,6 @@ $(function(){
                                             '  <span>',
                                             myDate,
                                         '</span>' +
-                                        '                                        <span>'+
-                    'vote:', 0,
-                                        '</span>' +
                                         '                                        <a data-toggle="modal" data-target="#myModal">' +
                                         '                                            <span class = "icon-bar sr-only">',
                     question_id_t, '</span>' +
@@ -238,11 +255,15 @@ $(function(){
                     '                                        </a>' +
                     '                                    </div>' +
                     '                                    <div>' +
-                    '                                        <span class = "i_am_comments panel panel-primary col-md-offset-1">',
+                    '    <span class = "col-md-1">' +
+                        '                        <h1><span class="glyphicon glyphicon glyphicon-thumbs-up js-glyphicon-thumbs-up-question" aria-hidden="true">',
+                        0, '</span></h1>' +
+                    '</span>' +
+                    '      <span class = "i_am_comments i_am_comments_box panel panel-primary col-md-offset-2 js-i_am_comments">',
                                                              content,
                                         '</span>' +
                                         '                                    </div>' +
-                                        '                                    <div>' +
+                                        '                                    <div  class = "sr-only">' +
                                         '                                        <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments-comments">' +
                                         '</span>' +
                                         '                                         <span class = "i_am_comments col-md-offset-1" id ="js-i_am_comments-anwsers">' +
@@ -272,15 +293,16 @@ $(function(){
                                                            '                                                        <span>',
                                                             myDate,
                                                         '</span>' +
-                                                        '                                                        <span>' +
-                                                        '                                                            vote:', 0,,
-                                                        '</span>' +
                                                         '                                                        <a data-toggle="modal" data-target="#myModal">' +
                                                         '                                                            <span class = "icon-bar sr-only">', question_id_t,
                                                     '</span>' +
                                                     '                                                            <span class = "icon-bar sr-only">', oResult.answer_id,
                                                     '</span> 点我回复' +
                                                     '                                                        </a>' +
+                                                         '<span>' +
+                                                                '<span class="glyphicon glyphicon glyphicon-thumbs-up js-glyphicon-thumbs-up-anwsers" aria-hidden="true">' +
+                                                        0, '</span>' +
+                                                            '</span>'+
                                                     '                                                    </div>',   content,
                                                      '<span class = "i_am_comments" id ="js-i_am_comments-sub_comments"> ' +
                                                      '</span>' +
@@ -345,7 +367,8 @@ $(function(){
                 alert('something error occurred')
             }
 
-
+            i_am_comments();
+            thumb_up();
 
         }).fail(function (oResult){
             alert(oResult.msg || '提交失败，请稍后重试');
@@ -357,13 +380,27 @@ $(function(){
     // ppt 部分
     var right = $(".js-carousel-right")[0];
     var ppt_id = parseInt(ppt_slice_id, 10) + 1;
-    var new_href = $(right)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
-    $(right).attr("href", new_href);
+    var right_limit = $(".js-ppt_total_page")[0].textContent;
+    var right_limit_num = parseInt(right_limit, 10);
+    if (ppt_id <= right_limit_num){
+        var new_href = $(right)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+        $(right).attr("href", new_href);
+    }
+    else{
+        $(right).attr("href", "#");
+    }
+
 
     var left = $(".js-carousel-left")[0];
     var ppt_id = parseInt(ppt_slice_id, 10) - 1;
-    var new_href = $(left)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
-    $(left).attr("href", new_href);
+    if (ppt_id > 0){
+        var new_href = $(left)[0].origin + "/" + words[1] + "/" + words[2] + "/" + words[3] + "/" + ppt_id;
+        $(left).attr("href", new_href);
+    }
+    else{
+        $(left).attr("href", "#");
+    }
+
 
     //$(".js-carousel-right").click(function(e){
     //    var index = $(".js-ppt_index");
