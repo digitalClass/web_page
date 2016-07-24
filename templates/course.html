@@ -32,17 +32,22 @@
                                     {% ifequal user_role 'st' %}
                                     {#学生#}
                                     {% if Is_subscribed %}
-                                    <form action="." method="post" accept-charset="utf-8">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="subscribed_status_changed" value=True >
-                                        <button type="submit" class="btn btn-primary">取消订阅</button>
-                                    </form>
+{#                                    <form action="." method="post" accept-charset="utf-8">#}
+{#                                        {% csrf_token %}#}
+{#                                        <a type="hidden" id="subscribed_status_changed" value=True ></a>#}
+{#                                        <button type="submit" class="btn btn-primary">取消订阅</button>#}
+                                        <a class = "sr-only" id="js-subscribed_status_changed">0</a>
+                                        <a class="btn btn-primary js-course_rss">取消订阅</a>
+{#                                    </form>#}
                                     {% else %}
-                                    <form action="." method="post" accept-charset="utf-8">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="subscribed_status_changed" value=True >
-                                        <button type="submit" class="btn btn-primary">订阅</button>
-                                    </form>
+{#                                    <form action="." method="post" accept-charset="utf-8">#}
+{#                                        {% csrf_token %}#}
+{#                                        <a type="hidden" id="subscribed_status_changed" value=True ></a>#}
+{#                                        <button type="submit" class="btn btn-primary">订阅</button>#}
+{#                                        <a class="btn btn-primary js-course_rss">订阅</a>#}
+                                        <a class = "sr-only" id="js-subscribed_status_changed">1</a>
+                                        <a class="btn btn-primary js-course_rss">订阅</a>
+{#                                    </form>#}
                                     {% endif %}
 
                                     {% else %}
@@ -197,4 +202,8 @@
 			</div>	
 		</div>
 	</div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/course.js"></script>
 {% endblock %}
