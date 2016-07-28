@@ -249,7 +249,7 @@ $(function(){
                     '                                          点我回复' +
                     '                                        </a>' +
                      '                   <a data-toggle="modal" data-target="#myModal">    ' +
-                    '                                        <span class = "icon-bar sr-only">',answer_id_t, '</span>' +
+                    '                                        <span class = "icon-bar sr-only">',oResult.answer_id, '</span>' +
                     '                                            <span class = "icon-bar sr-only">-2</span>' +
                     '                                          我要回答' +
                     '                                        </a>' +
