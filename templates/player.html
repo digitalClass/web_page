@@ -42,15 +42,11 @@
                           <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                           <div class="carousel-inner" role="listbox">
                             <div class="item active">
-							{% ifequal ppt_slices_data.ppt_total_page 0  %}
+							{% if not ppt_slices_data.ppt_total_page %}
                            		<img class="first-slide js-ppt_url" src="/static/images/blank.jpg" alt="First slide">
 							{% else %}
-								{% if '0.jpg' in ppt_slices_data.img_path %}
-                              		<img class="first-slide js-ppt_url" src="/static/images/blank.jpg" alt="First slide">
-								{% else %}
-                              		<img class="first-slide js-ppt_url" src="{{ ppt_slices_data.img_path }}" alt="First slide">
-							  	{% endif %}
-							{% endifequal %}
+                              	<img class="first-slide js-ppt_url" src="{{ ppt_slices_data.img_path }}" alt="First slide">
+							{% endif %}
 							  	
                             </div>
     {#                        <div class="item">#}
@@ -126,7 +122,7 @@
     {#                                    提问区#}
                                         <div>
                                             <a href="#">
-                                                <img src="/media/avatar/default.png" class = "small_logo">
+                                                <img src="{{ question.user_avatar }}" class = "small_logo">
                                             </a>
 
                                             <span>
@@ -195,7 +191,7 @@
                                                     <div class = "col-md-offset-1">
                                                         <div>
                                                             <a href="#">
-                                                                <img src="/media/avatar/default.png" class = "small_logo">
+                                                                <img src="{{ comment.user_avatar }}" class = "small_logo">
                                                             </a>
 
                                                             <span>
@@ -219,7 +215,7 @@
                                                     <div>
                                                         <div >
                                                             <a href="#">
-                                                                <img src="/media/avatar/default.png" class = "small_logo">
+                                                                <img src="{{ answer.user_avatar }}" class = "small_logo">
                                                             </a>
 
                                                             <span>
@@ -251,7 +247,7 @@
                                                                 <div  class = "col-md-offset-1">
                                                                     <div >
                                                                         <a href="#">
-                                                                            <img src="/media/avatar/default.png" class = "small_logo">
+                                                                            <img src="{{ comment_i.user_avatar }}" class = "small_logo">
                                                                         </a>
 
                                                                         <span>
