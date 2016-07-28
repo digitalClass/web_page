@@ -44,12 +44,12 @@ $(function(){
             var curpage = parseInt($(curpage_c).text(), 10);
             var totalpage_c = $(".js_totalpage");
             var totalpage = parseInt($(totalpage_c).text(), 10);
-            var curpage_add_c = $(curpage_c).find("js_curpage_add");
-            var curpage_add = parseInt($(curpage_add_c).text(), 10);
-            var page_num_c = $(curpage_c).find("js_curpage_add");
+            var curpage_add_c = e.currentTarget.children[1].textContent;
+            var curpage_add = parseInt(curpage_add_c, 10);
+            var page_num_c = $(".js_pagenum");
             var page_num = parseInt($(page_num_c).text(), 10);
             var page_id = curpage + curpage_add;
-            if ( page_id <= 0 || page_id >= totalpage){
+            if ( page_id <= 0 || page_id > totalpage){
                 return;
             }
 
@@ -78,6 +78,8 @@ $(function(){
                     ].join('');
                     $(oListDv).append(sHtml);
                 }
+
+                $(curpage_c).text(page_id);
             }).fail(function (oResult){
                 alert(oResult.msg || '请求失败，请稍后重试');
             }). always(function () {
