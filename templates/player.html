@@ -2,7 +2,7 @@
 
 {% block title %}欢迎来到数字化课堂{% endblock %}
 {% block css %}
-    <link href="/static/css/player_css_base.css" rel="stylesheet">
+    <link href="/static/css/player_css_base.css" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
     <link href="/static/css/player.css" rel="stylesheet">
 {% endblock %}
 
@@ -10,29 +10,7 @@
 
     <div class="listbox">
          <div class="container-fluid">
-            <div class="panel panel-primary comments_zone col-md-10 col-md-offset-1">
-                        <!--课程描述-->
-                        <dl class = "class-description">
-                            <dt class = "col-md-offset-1">
-                                {{ course_data.course_id }}    {{ course_data.title }}
-                            </dt>
-                            <dd class = "col-md-offset-2">
-                                授课老师：
-								{% for teacher in course_data.teacher %}
-								{{ teacher }}
-								{% endfor %}
-								<br>
 
-                                课程助教：
-								{% for ta in course_data.teaching_assistant %}
-								{{ ta }}
-								{% endfor %}
-
-								<br>
-								创建课程时间： {{ course_data.date }}
-                            </dd>
-                        </dl>
-            </div>
 
                 <div class="row">
                     <div class="col-md-7 col-md-offset-1">
@@ -64,13 +42,17 @@
                         </div><!-- /.carousel -->
                         </div>
 
-                        <div class = "col-md-11 col-md-offset-3">
+                        <div class = "col-md-11 col-md-offset-1">
                             <div class="input-group">
                                         <div class = "col-md-3 nav-jump-go">
                                             <h1>跳转到</h1>
                                         </div>
-                                        <div class = "col-md-4">
+                                        <div class = "col-md-2">
                                             <input type="text" class="form-control js-ppt_slices_data_index" placeholder="{{ ppt_slices_data.index }}" value = "{{ ppt_slices_data.index }}">
+
+                                        </div>
+                                        <div class = "col-md-3 nav-jump-go">
+                                            <h1>/ 共 {{ ppt_slices_data.ppt_total_page }} 页</h1>
                                         </div>
                                       <span class="input-group-btn col-md-1">
                                         <button class="btn btn-primary js-btn_go" type="button">Go!</button>
@@ -79,8 +61,31 @@
                         </div>
 
                     </div>
-
                     <div class="col-md-3">
+                        <div class="panel panel-primary ">
+                            <!--课程描述-->
+                            <dl class = "class-description">
+                                <dt class = "col-md-offset-1">
+                                    课程标题: {{ course_data.title }}
+                                </dt>
+                                <dd class = "col-md-offset-2">
+                                    课程ID: {{ course_data.course_id }}<br>
+                                    授课老师：
+                                    {% for teacher in course_data.teacher %}
+                                    {{ teacher }}
+                                    {% endfor %}
+                                    <br>
+
+                                    课程助教：
+                                    {% for ta in course_data.teaching_assistant %}
+                                    {{ ta }}
+                                    {% endfor %}
+
+                                    <br>
+                                    创建课程时间： {{ course_data.date }}
+                                </dd>
+                            </dl>
+                         </div>
                         <div class="panel panel-primary comments_zone">
                             <div class = "posts-comments js-questions">
                                 <!-- Button trigger modal -->
@@ -153,29 +158,6 @@
                                             <span class = "i_am_comments i_am_comments_box panel panel-primary col-md-offset-2 js-i_am_comments">
                                                 {{ question.content }}
                                             </span>
-
-    {#                                        <a class = "col-md-offset-8" id = "js-feedback-{{ forloop.counter }}" href="#"></a>#}
-
-{#                                            <!-- Modal -->#}
-{#                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
-{#                                              <div class="modal-dialog" role="document">#}
-{#                                                <div class="modal-content">#}
-{#                                                    <form>#}
-{#                                                            <label class="form-control">提交评论</label>#}
-{#                                                              <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>#}
-{##}
-{#                                                              <div class = "form-group">#}
-{#                                                                    <input type="reset" class="btn btn-primary form-control">#}
-{#                                                                    <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>#}
-{#                                                              </div>#}
-{##}
-{##}
-{#                                                            <span class = "icon-bar sr-only" id = "js-question_id"></span>#}
-{#                                                            <span class = "icon-bar sr-only" id = "js-answer_id"></span>#}
-{#                                                    </form>#}
-{#                                                </div>#}
-{#                                              </div>#}
-{#                                            </div>#}
                                         </div>
 
 
@@ -287,7 +269,7 @@
                                     </button>
                               </div>
                             </div>
-                        </div>
+                    </div>
                 </div>
             </div>
     </div>
