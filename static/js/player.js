@@ -400,43 +400,5 @@ $(function(){
     else{
         $(left).attr("href", "#");
     }
-
-
-    //$(".js-carousel-right").click(function(e){
-    //    var index = $(".js-ppt_index");
-    //    //var img_url = $(".js-ppt_url");
-    //    var ppt_index = parseInt(index[0].textContent, 10) + 1;
-    //
-    //    var csrftoken = getCookie('csrftoken');
-    //
-    //    $.ajaxSetup({
-    //                beforeSend: function(xhr, settings) {
-    //                                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-    //                                                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    //                                                            }
-    //                                                                }
-    //    });
-    //
-    //    $.ajax({
-    //        url: '/requestPPT/',
-    //        type: 'post',
-    //        dataType: 'json',
-    //        data: {index: ppt_index, course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
-    //    }).done(function (oResult){
-    //        //if (oResult.code != 0){
-    //        //    return alert(oResult.msg || '页面跳转请求失败， 请稍后重试');
-    //        //}
-    //
-    //        //index.text(oResult.index);
-    //        //img_url.text(oResult.img_path);
-    //
-    //    }).fail(function (oResult){
-    //        alert(oResult.msg || '页面跳转请求失败，请稍后重试');
-    //    }).always(function () {
-    //            bSubmit = false;
-    //    });
-    //});
-
-
 })
 
