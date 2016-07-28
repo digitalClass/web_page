@@ -244,7 +244,7 @@ $(function(){
                                         '</span>' +
                                         '                                        <a data-toggle="modal" data-target="#myModal">' +
                                         '                                            <span class = "icon-bar sr-only">',
-                    question_id_t, '</span>' +
+                    oResult.question_id, '</span>' +
                     '                                            <span class = "icon-bar sr-only">-1</span>' +
                     '                                          点我回复' +
                     '                                        </a>' +
