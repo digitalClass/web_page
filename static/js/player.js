@@ -233,7 +233,7 @@ $(function(){
                 '<div class = "panel panel-primary js-question_areas">' +
                 '                                    <div>' +
                 '                                        <a href="#">' +
-                '                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                '                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                 '                                        </a>' +
                 '<span>' +
                 '<a href = "#">',username,
@@ -283,7 +283,7 @@ $(function(){
                     '<div>' +
                     '                                                    <div >' +
                     '                                                        <a href="#">' +
-                    '                                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                        </a> ' +
                     '<span>' +
                     '                                                            <a href = "#">',
@@ -320,7 +320,7 @@ $(function(){
                     '<div class = "col-md-offset-1">' +
                     '                                                    <div >' +
                     '                                                        <a href="#">' +
-                    '                                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                        </a>' +
                     '                                                        <span>' +
                     '                                                            <a href = "#">',
@@ -347,7 +347,7 @@ $(function(){
                     '<div  class = "col-md-offset-1">' +
                     '                                                                <div >' +
                     '                                                                    <a href="#">' +
-                    '                                                                        <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                                        <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                                    </a>' +
                     '                                                                    <span>' +
                     '                                                                        <a href = "#">',

@@ -20,7 +20,11 @@
 				<div class="row-fluid">
 					<div class="span4">
 						<!--&&&课程头像,暂时为ppt头像&&&-->
+						{% if not course.img_path %}
+						<img alt="课程缩略图" src="/static/images/default_class.jpg" />
+						{% else %}
 						<img alt="课程缩略图" src={{course.img_path}} />
+						{% endif %}
 					</div>		
 					<div class="span8">
 						<div class="row-fluid">
