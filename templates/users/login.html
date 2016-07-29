@@ -19,13 +19,6 @@
                    {% include "users/partials/field.html" %} 
                 {% endfor %}
 
-               <!--记住我, 先保留着 -->
-              <!--<div class="checkbox">-->
-                <!--<label>-->
-                <!--<input type="checkbox"> Check me out-->
-                <!--</label>-->
-              <!--</div>-->
-
               <button type="submit" class="btn btn-primary">提交</button>
               <input type="hidden" name="next" value="{{next}}"/>
               <p><a href="{% url 'users_password_reset' %}">忘记密码？</a></p>
