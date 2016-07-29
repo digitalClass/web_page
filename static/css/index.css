@@ -58,6 +58,6 @@
 .class_list{
     position: absolute;
     top: 150px;
-    opacity: 0.2;
+    opacity: 1;
     width:100%;
 }
