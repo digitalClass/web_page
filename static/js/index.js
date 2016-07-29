@@ -46,7 +46,7 @@ $(function(){
             }
 
             $.ajax({
-                url: '/page_change',
+                url: '/page_change/',
                 type: 'post',
                 dataType: 'json',
                 data: {'page_id': page_id}
