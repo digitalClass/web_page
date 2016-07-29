@@ -1,7 +1,5 @@
 {% extends "base.html"%}
-{% block css %}<link href="/static/css/feedback.css" rel="stylesheet"> {% endblock %}
 {% block content %}
-    <body class = "cs-body">
 	<div class="container " style="text-align:center">
 		<form method="post">
 			{% csrf_token %}
@@ -9,6 +7,5 @@
 			<button type="submit" name="submit" class="btn btn-primary">确认提交</button>
 		</form>
 	</div>
-    </body>
 {% endblock %}
 
