@@ -3,14 +3,6 @@
  */
 
 $(function(){
-    $('.js-class_list').mouseover(function(){
-        $(this).css("opacity", 1)
-    });
-
-    $('.js-class_list').mouseout(function(){
-        $(this).css("opacity", 0.2)
-    });
-
     function getCookie(name) {
                 var cookieValue = null;
                     if (document.cookie && document.cookie != '') {
