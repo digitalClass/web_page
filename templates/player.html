@@ -2,7 +2,7 @@
 
 {% block title %}欢迎来到数字化课堂{% endblock %}
 {% block css %}
-    <link href="/static/css/player_css_base.css" rel="stylesheet">
+    <link href="/static/css/player_css_base.css" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
     <link href="/static/css/player.css" rel="stylesheet">
 {% endblock %}
 
@@ -10,29 +10,7 @@
 
     <div class="listbox">
          <div class="container-fluid">
-            <div class="panel panel-primary comments_zone col-md-10 col-md-offset-1">
-                        <!--课程描述-->
-                        <dl class = "class-description">
-                            <dt class = "col-md-offset-1">
-                                {{ course_data.course_id }}    {{ course_data.title }}
-                            </dt>
-                            <dd class = "col-md-offset-2">
-                                授课老师：
-								{% for teacher in course_data.teacher %}
-								{{ teacher }}
-								{% endfor %}
-								<br>
 
-                                课程助教：
-								{% for ta in course_data.teaching_assistant %}
-								{{ ta }}
-								{% endfor %}
-
-								<br>
-								创建课程时间： {{ course_data.date }}
-                            </dd>
-                        </dl>
-            </div>
 
                 <div class="row">
                     <div class="col-md-7 col-md-offset-1">
@@ -42,7 +20,12 @@
                           <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                           <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                              <img class="first-slide js-ppt_url" src="{{ ppt_slices_data.img_path }}" alt="First slide">
+							{% if not ppt_slices_data.ppt_total_page %}
+                           		<img class="first-slide js-ppt_url" src="/static/images/blank.jpg" alt="First slide">
+							{% else %}
+                              	<img class="first-slide js-ppt_url" src="{{ ppt_slices_data.img_path }}" alt="First slide">
+							{% endif %}
+							  	
                             </div>
     {#                        <div class="item">#}
     {#                          <img class="second-slide" src="/static/images/slide/2.jpg" alt="Second slide">#}
@@ -64,13 +47,17 @@
                         </div><!-- /.carousel -->
                         </div>
 
-                        <div class = "col-md-11 col-md-offset-3">
+                        <div class = "col-md-11 col-md-offset-1">
                             <div class="input-group">
                                         <div class = "col-md-3 nav-jump-go">
                                             <h1>跳转到</h1>
                                         </div>
-                                        <div class = "col-md-4">
+                                        <div class = "col-md-2">
                                             <input type="text" class="form-control js-ppt_slices_data_index" placeholder="{{ ppt_slices_data.index }}" value = "{{ ppt_slices_data.index }}">
+
+                                        </div>
+                                        <div class = "col-md-3 nav-jump-go">
+                                            <h1>/ 共 {{ ppt_slices_data.ppt_total_page }} 页</h1>
                                         </div>
                                       <span class="input-group-btn col-md-1">
                                         <button class="btn btn-primary js-btn_go" type="button">Go!</button>
@@ -79,16 +66,42 @@
                         </div>
 
                     </div>
-
                     <div class="col-md-3">
+                        <div class="panel panel-primary ">
+                            <!--课程描述-->
+                            <dl class = "class-description">
+                                <dt class = "col-md-offset-1">
+                                    课程标题: {{ course_data.title }}
+                                </dt>
+                                <dd class = "col-md-offset-2">
+                                    课程ID: {{ course_data.course_id }}<br>
+                                    授课老师：
+                                    {% for teacher in course_data.teacher %}
+                                    {{ teacher }}
+                                    {% endfor %}
+                                    <br>
+
+                                    课程助教：
+                                    {% for ta in course_data.teaching_assistant %}
+                                    {{ ta }}
+                                    {% endfor %}
+
+                                    <br>
+                                    创建课程时间： {{ course_data.date }}
+                                </dd>
+                            </dl>
+                         </div>
                         <div class="panel panel-primary comments_zone">
                             <div class = "posts-comments js-questions">
                                 <!-- Button trigger modal -->
+
+                                {% if ppt_slices_data.ppt_total_page > 0 %}
                                 <a data-toggle="modal" data-target="#myModal">
                                     <span class = "icon-bar sr-only">{{ -1 }}</span>
                                     <span class = "icon-bar sr-only">{{ -5 }}</span>
                                   点我提问
                                 </a>
+                                {% endif %}
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -117,7 +130,7 @@
     {#                                    提问区#}
                                         <div>
                                             <a href="#">
-                                                <img src="/static/images/logo.ico" class = "small_logo">
+                                                <img src="{{ question.user_avatar }}" class = "small_logo">
                                             </a>
 
                                             <span>
@@ -131,11 +144,14 @@
                                             </span>
 
                                             <!-- Button trigger modal -->
+											<!--
                                             <a data-toggle="modal" data-target="#myModal">
                                                 <span class = "icon-bar sr-only">{{ question.question_id }}</span>
                                                 <span class = "icon-bar sr-only">{{ -1 }}</span>
                                               点我回复
                                             </a>
+											-->
+										
 
                                             <!-- Button trigger modal -->
                                             <a data-toggle="modal" data-target="#myModal">
@@ -153,29 +169,6 @@
                                             <span class = "i_am_comments i_am_comments_box panel panel-primary col-md-offset-2 js-i_am_comments">
                                                 {{ question.content }}
                                             </span>
-
-    {#                                        <a class = "col-md-offset-8" id = "js-feedback-{{ forloop.counter }}" href="#"></a>#}
-
-{#                                            <!-- Modal -->#}
-{#                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
-{#                                              <div class="modal-dialog" role="document">#}
-{#                                                <div class="modal-content">#}
-{#                                                    <form>#}
-{#                                                            <label class="form-control">提交评论</label>#}
-{#                                                              <textarea class = "form-control" id = "js-mycontent" rows = "20"></textarea>#}
-{##}
-{#                                                              <div class = "form-group">#}
-{#                                                                    <input type="reset" class="btn btn-primary form-control">#}
-{#                                                                    <Button class="btn btn-primary form-control" id = "js-mysubmit" data-dismiss="modal">提交</Button>#}
-{#                                                              </div>#}
-{##}
-{##}
-{#                                                            <span class = "icon-bar sr-only" id = "js-question_id"></span>#}
-{#                                                            <span class = "icon-bar sr-only" id = "js-answer_id"></span>#}
-{#                                                    </form>#}
-{#                                                </div>#}
-{#                                              </div>#}
-{#                                            </div>#}
                                         </div>
 
 
@@ -186,7 +179,7 @@
                                                     <div class = "col-md-offset-1">
                                                         <div>
                                                             <a href="#">
-                                                                <img src="/static/images/logo.ico" class = "small_logo">
+                                                                <img src="{{ comment.user_avatar }}" class = "small_logo">
                                                             </a>
 
                                                             <span>
@@ -210,7 +203,7 @@
                                                     <div>
                                                         <div >
                                                             <a href="#">
-                                                                <img src="/static/images/logo.ico" class = "small_logo">
+                                                                <img src="{{ answer.user_avatar }}" class = "small_logo">
                                                             </a>
 
                                                             <span>
@@ -242,7 +235,7 @@
                                                                 <div  class = "col-md-offset-1">
                                                                     <div >
                                                                         <a href="#">
-                                                                            <img src="/static/images/logo.ico" class = "small_logo">
+                                                                            <img src="{{ comment_i.user_avatar }}" class = "small_logo">
                                                                         </a>
 
                                                                         <span>
@@ -287,7 +280,7 @@
                                     </button>
                               </div>
                             </div>
-                        </div>
+                    </div>
                 </div>
             </div>
     </div>

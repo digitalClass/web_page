@@ -3,21 +3,23 @@
  */
 
 $(function(){
-        // using jQuery
+	// using jQuery
     function getCookie(name) {
-                var cookieValue = null;
-                    if (document.cookie && document.cookie != '') {
-                                    var cookies = document.cookie.split(';');
-                                            for (var i = 0; i < cookies.length; i++) {
-                                                                var cookie = jQuery.trim(cookies[i]);
-                                                                            // Does this cookie string begin with the name we want?
-                                                                                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                                                                                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                                                                                                                break;
-                                                                                                                                            }
-                                                                                                                                                    }
-                                                                                                                                                        }
-                                                                                                                                                            return cookieValue;
+
+    	var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+        	var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+            	var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                	cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                	break;
+            	}
+        	}
+		}
+        
+		return cookieValue;
     }
     function csrfSafeMethod(method) {
                 // these HTTP methods do not require CSRF protection
@@ -90,11 +92,11 @@ $(function(){
 
             var csrftoken = getCookie('csrftoken');
             $.ajaxSetup({
-                        beforeSend: function(xhr, settings) {
-                                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                                                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                                                                    }
-                                                                        }
+            	beforeSend: function(xhr, settings) {
+               		if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+               			xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					}
+				}
             });
 
             $.ajax({
@@ -233,7 +235,7 @@ $(function(){
                 '<div class = "panel panel-primary js-question_areas">' +
                 '                                    <div>' +
                 '                                        <a href="#">' +
-                '                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                '                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                 '                                        </a>' +
                 '<span>' +
                 '<a href = "#">',username,
@@ -242,14 +244,8 @@ $(function(){
                                             '  <span>',
                                             myDate,
                                         '</span>' +
-                                        '                                        <a data-toggle="modal" data-target="#myModal">' +
-                                        '                                            <span class = "icon-bar sr-only">',
-                    question_id_t, '</span>' +
-                    '                                            <span class = "icon-bar sr-only">-1</span>' +
-                    '                                          点我回复' +
-                    '                                        </a>' +
                      '                   <a data-toggle="modal" data-target="#myModal">    ' +
-                    '                                        <span class = "icon-bar sr-only">',answer_id_t, '</span>' +
+                    '                                        <span class = "icon-bar sr-only">',oResult.question_id, '</span>' +
                     '                                            <span class = "icon-bar sr-only">-2</span>' +
                     '                                          我要回答' +
                     '                                        </a>' +
@@ -283,7 +279,7 @@ $(function(){
                     '<div>' +
                     '                                                    <div >' +
                     '                                                        <a href="#">' +
-                    '                                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                        </a> ' +
                     '<span>' +
                     '                                                            <a href = "#">',
@@ -320,7 +316,7 @@ $(function(){
                     '<div class = "col-md-offset-1">' +
                     '                                                    <div >' +
                     '                                                        <a href="#">' +
-                    '                                                            <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                            <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                        </a>' +
                     '                                                        <span>' +
                     '                                                            <a href = "#">',
@@ -347,7 +343,7 @@ $(function(){
                     '<div  class = "col-md-offset-1">' +
                     '                                                                <div >' +
                     '                                                                    <a href="#">' +
-                    '                                                                        <img src="/static/images/logo.ico" class = "small_logo">' +
+                    '                                                                        <img src="/media/avatar/default.png" class = "small_logo">' +
                     '                                                                    </a>' +
                     '                                                                    <span>' +
                     '                                                                        <a href = "#">',
@@ -400,43 +396,5 @@ $(function(){
     else{
         $(left).attr("href", "#");
     }
-
-
-    //$(".js-carousel-right").click(function(e){
-    //    var index = $(".js-ppt_index");
-    //    //var img_url = $(".js-ppt_url");
-    //    var ppt_index = parseInt(index[0].textContent, 10) + 1;
-    //
-    //    var csrftoken = getCookie('csrftoken');
-    //
-    //    $.ajaxSetup({
-    //                beforeSend: function(xhr, settings) {
-    //                                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-    //                                                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    //                                                            }
-    //                                                                }
-    //    });
-    //
-    //    $.ajax({
-    //        url: '/requestPPT/',
-    //        type: 'post',
-    //        dataType: 'json',
-    //        data: {index: ppt_index, course_id : course_id, ppt_file_title:ppt_file_title, ppt_slice_id:ppt_slice_id}
-    //    }).done(function (oResult){
-    //        //if (oResult.code != 0){
-    //        //    return alert(oResult.msg || '页面跳转请求失败， 请稍后重试');
-    //        //}
-    //
-    //        //index.text(oResult.index);
-    //        //img_url.text(oResult.img_path);
-    //
-    //    }).fail(function (oResult){
-    //        alert(oResult.msg || '页面跳转请求失败，请稍后重试');
-    //    }).always(function () {
-    //            bSubmit = false;
-    //    });
-    //});
-
-
 })
 

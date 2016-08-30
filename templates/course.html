@@ -20,7 +20,11 @@
 				<div class="row-fluid">
 					<div class="span4">
 						<!--&&&课程头像,暂时为ppt头像&&&-->
+						{% if not course.img_path %}
+						<img alt="课程缩略图" src="/static/images/default_class.jpg" />
+						{% else %}
 						<img alt="课程缩略图" src={{course.img_path}} />
+						{% endif %}
 					</div>		
 					<div class="span8">
 						<div class="row-fluid">
@@ -130,12 +134,12 @@
 											<hr/>
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;其他资源</p>
 											<ul class="nav nav-list">
-												<li><a href="Chapter01.html">Chapter 1</a></li>
-												<li><a href="Chapter01.html">Chapter 2</a></li>
-												<li><a href="Chapter01.html">Chapter 3</a></li>
-												<li><a href="Chapter01.html">Chapter 4</a></li>
-												<li><a href="Chapter01.html">Chapter 5</a></li>
-												<li><a href="Chapter01.html">Chapter 6</a></li>
+												<li><a href="#">Chapter 1</a></li>
+												<li><a href="#">Chapter 2</a></li>
+												<li><a href="#">Chapter 3</a></li>
+												<li><a href="#">Chapter 4</a></li>
+												<li><a href="#">Chapter 5</a></li>
+												<li><a href="#">Chapter 6</a></li>
 											</ul>
 										</div>
 									</div>
@@ -176,22 +180,22 @@
 										<hr/>
 										<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;问答区</p>
 										<ul class="nav nav-list">
-											<li><a href="Chapter01.html">Chapter 1</a></li>
-											<li><a href="Chapter01.html">Chapter 2</a></li>
-											<li><a href="Chapter01.html">Chapter 3</a></li>
-											<li><a href="Chapter01.html">Chapter 4</a></li>
-											<li><a href="Chapter01.html">Chapter 5</a></li>
-											<li><a href="Chapter01.html">Chapter 6</a></li>
+											<li><a href="#">Chapter 1</a></li>
+											<li><a href="#">Chapter 2</a></li>
+											<li><a href="#">Chapter 3</a></li>
+											<li><a href="#">Chapter 4</a></li>
+											<li><a href="#">Chapter 5</a></li>
+											<li><a href="#">Chapter 6</a></li>
 										</ul>
 										<hr/>
 										<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;留言区</p>
 										<ul class="nav nav-list">
-											<li><a href="Chapter01.html">Chapter 1</a></li>
-											<li><a href="Chapter01.html">Chapter 2</a></li>
-											<li><a href="Chapter01.html">Chapter 3</a></li>
-											<li><a href="Chapter01.html">Chapter 4</a></li>
-											<li><a href="Chapter01.html">Chapter 5</a></li>
-											<li><a href="Chapter01.html">Chapter 6</a></li>
+											<li><a href="#">Chapter 1</a></li>
+											<li><a href="#">Chapter 2</a></li>
+											<li><a href="#">Chapter 3</a></li>
+											<li><a href="#">Chapter 4</a></li>
+											<li><a href="#">Chapter 5</a></li>
+											<li><a href="#">Chapter 6</a></li>
 										</ul>
 									</div>
 								</div>

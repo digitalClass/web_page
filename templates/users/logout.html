@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block css %}<link href="/static/css/feedback.css" rel="stylesheet"> {% endblock %}
 {% block content %}
+    <body class = "cs-body">
 <div class = "col-md-offset-2 col-md-8">
     <p> 您已登出，感谢您在我们网站上花费的宝贵时间，期待与您的下次见面。</p>
     <a href="/accounts/login">重新登录</a>
 </div>
+    </body>
 {% endblock %}
 
 {% block js %}
