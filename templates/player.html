@@ -82,19 +82,17 @@
                                 </dt>
                                 <dd class = "col-md-offset-2">
                                     课程ID: {{ course_data.course_id }}<br>
-                                    授课老师：
-                                    {% for teacher in course_data.teacher %}
-                                    {{ teacher }}
-                                    {% endfor %}
+                                    授课老师:
+                                    {{ course_data.teacher }}
                                     <br>
 
-                                    课程助教：
+                                    课程助教:
                                     {% for ta in course_data.teaching_assistant %}
                                     {{ ta }}
                                     {% endfor %}
 
                                     <br>
-                                    创建课程时间： {{ course_data.date }}
+                                    创建课程时间: {{ course_data.date }}
                                 </dd>
                             </dl>
                          </div>
