@@ -126,10 +126,22 @@
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>
 											<!--<li>{{course.id }}</li>
 											<li>{{course.course_id }}</li>-->
-
+											{% ifequal user_role 'te'  %}
 											{%if  Is_this_course_teacher %}
-											<button type="submit" class="btn btn-primary">上传PPT</button>
+											<div> <a href="../../building">
+											<button type="submit" class="btn btn-primary">
+											上传视频</button></a></div>
 											{% endif %}
+											{% endifequal %}
+											{% ifequal user_role 'st' %}
+											{% if Is_subscribed %}
+
+											<div> <a href="../../building">
+											<button type="submit" class="btn btn-primary">
+											下载视频</button></a></div>
+											{% endif %}
+											{% endifequal %}
+
 
 											<hr/>
 											<!--<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;其他资源</p>
