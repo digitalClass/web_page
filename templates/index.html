@@ -60,8 +60,26 @@
                       {% endfor %}
                   </tbody>
                 </table>
+			
+				<ul class="pagination pagination-lg">
+					<li class="disabled each_page"><a href="#">&laquo;</a></li>
+					<li class="active each_page"><a href="#">1</a></li>
+					{% for i in page_num_list %}
+						{% ifequal i 1 %}
+						{% else %}
+							<li class="each_page"><a href="#">{{ i }}</a></li>
+						{% endifequal %}
+		
+					{% endfor %}
+							
+					<li class="each_page"><a href="#">&raquo;</a></li>
+				</ul>
+
+
             </div>
+
         </div>
+
     </div>
 
 

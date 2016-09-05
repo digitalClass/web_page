@@ -57,9 +57,9 @@
                                     {% else %}
                                     {% ifequal user_role 'te'  %}
                                     {% if Is_this_course_teacher %}
-                                    <p>您是这门课的老师,您可以:</p>
+                                    <p>您的登录身份为老师，您可以:</p>
                                     {#老师#}
-                                    <div class="col-md-10 ">
+                                    <div>
                                         <a href="ppt_upload" class="button
                                         cs-cont-manage-icn">上传课件</a>
                                     </div>
@@ -81,7 +81,7 @@
 						<div class="row-fluid">
 							<div class="span12">
 								<div class="col-md-12 cs-intro-manage-icn">
-									<a href="#" class="button">编辑</a>
+									<a href="../../building" class="button">编辑</a>
 								</div>
 							</div>
 						</div>
@@ -126,13 +126,25 @@
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>
 											<!--<li>{{course.id }}</li>
 											<li>{{course.course_id }}</li>-->
-
+											{% ifequal user_role 'te'  %}
 											{%if  Is_this_course_teacher %}
-											<button type="submit" class="btn btn-primary">上传PPT</button>
+											<div> <a href="../../building">
+											<button type="submit" class="btn btn-primary">
+											上传视频</button></a></div>
 											{% endif %}
+											{% endifequal %}
+											{% ifequal user_role 'st' %}
+											{% if Is_subscribed %}
+
+											<div> <a href="../../building">
+											<button type="submit" class="btn btn-primary">
+											下载视频</button></a></div>
+											{% endif %}
+											{% endifequal %}
+
 
 											<hr/>
-											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;其他资源</p>
+											<!--<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;其他资源</p>
 											<ul class="nav nav-list">
 												<li><a href="#">Chapter 1</a></li>
 												<li><a href="#">Chapter 2</a></li>
@@ -140,7 +152,7 @@
 												<li><a href="#">Chapter 4</a></li>
 												<li><a href="#">Chapter 5</a></li>
 												<li><a href="#">Chapter 6</a></li>
-											</ul>
+											</ul>-->
 										</div>
 									</div>
 								</div>
@@ -160,7 +172,7 @@
 											</p>			
 										</div>
 										<div class="panel-footer">
-											<center>查看更多</center>
+											<center><a herf="../../building">查看更多</a></center>
 										</div>
 									</div>
 								</div>
@@ -180,22 +192,22 @@
 										<hr/>
 										<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;问答区</p>
 										<ul class="nav nav-list">
-											<li><a href="#">Chapter 1</a></li>
-											<li><a href="#">Chapter 2</a></li>
-											<li><a href="#">Chapter 3</a></li>
-											<li><a href="#">Chapter 4</a></li>
-											<li><a href="#">Chapter 5</a></li>
-											<li><a href="#">Chapter 6</a></li>
+											<li><a href="../../building">Chapter 1</a></li>
+											<li><a href="../../building">Chapter 2</a></li>
+											<li><a href="../../building">Chapter 3</a></li>
+											<li><a href="../../building">Chapter 4</a></li>
+											<li><a href="../../building">Chapter 5</a></li>
+											<li><a href="../../building">Chapter 6</a></li>
 										</ul>
 										<hr/>
 										<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;留言区</p>
 										<ul class="nav nav-list">
-											<li><a href="#">Chapter 1</a></li>
-											<li><a href="#">Chapter 2</a></li>
-											<li><a href="#">Chapter 3</a></li>
-											<li><a href="#">Chapter 4</a></li>
-											<li><a href="#">Chapter 5</a></li>
-											<li><a href="#">Chapter 6</a></li>
+											<li><a href="../../building">Chapter 1</a></li>
+											<li><a href="../../building">Chapter 2</a></li>
+											<li><a href="../../building">Chapter 3</a></li>
+											<li><a href="../../building">Chapter 4</a></li>
+											<li><a href="../../building">Chapter 5</a></li>
+											<li><a href="../../building">Chapter 6</a></li>
 										</ul>
 									</div>
 								</div>

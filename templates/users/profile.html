@@ -41,6 +41,7 @@
                             <th>课程名称</th>
                             <th>开课时间</th>
                             <th>开课老师</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                           <td><a href="/course/{{course.id}}">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher_name}}</td>
+                          <td><a herf="../../building">删除课程</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
