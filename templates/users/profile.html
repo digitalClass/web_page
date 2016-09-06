@@ -51,7 +51,13 @@
                           <td><a href="/course/{{course.id}}">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher_name}}</td>
-                          <td><a herf="../../building">删除课程</a></td>
+                          <td><!-- a herf="../../building">删除课程</a-->
+				<form action="" method="POST" accept-charset="utf-8">
+				{% csrf_token %}
+				    <input type="hidden" value={{course.id}} name="course_id"></a>
+					    <input type="submit" value="删除" >
+				</form>
+			  </td>
                         </tr>
                         {% endfor %}
                     </tbody>
