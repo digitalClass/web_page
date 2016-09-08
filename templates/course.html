@@ -116,11 +116,34 @@
 												</div>
 											</div>
 											<ul class="nav nav-list">
+					<table class="table table-hover">
+					    <thead>
+						<tr>
+							<th>序号</th>
+							<th>课件</th>
+							<th>简介</th>
+							<th>上传时间</th>
+							<th>操作</th>
+						</tr>
+					    </thead>
+					    <tbody>
                                                 {% for ppt in ppts %}
                                                 {#默认跳到ppt的第一页#}
-                                                <li><a href="/classroom/{{course.id}}/{{ppt}}/1">{{ppt}}</a>&nbsp;&nbsp;
-                                                    {{ppt.introduce}} &nbsp;上传时间:{{ppt.upload_time}}</li>
+						<tr>
+							<td scope="row">{{ppt}}</td>
+                                                	<td><a href="/classroom/{{course.id}}/{{ppt}}/1">{{ppt}}</a></td>
+							<td>{{ppt.introduce}}</td>
+							<td>{{ppt.upload_time}}</td>
+							<td>	<form action="" method="POST" accept-charset="utf-8">
+                                				{% csrf_token %}
+                                    			    	    <input type="hidden" value={{ppt.id}} name="delete_ppt_id"></a>
+                                            				<input type="submit" value="删除" >
+                                				</form>
+                          				</td>
+						</tr>
                                                 {% endfor %}
+					    </tbody>
+					</table>
 											</ul>
 											<hr/>
 											<p class="cs-panel-title">&nbsp;&nbsp;&nbsp;视频列表</p>
