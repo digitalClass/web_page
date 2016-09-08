@@ -37,7 +37,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>课程ID</th>
+                            <th>课程序号</th>
                             <th>课程名称</th>
                             <th>开课时间</th>
                             <th>开课老师</th>
@@ -55,7 +55,7 @@
 				<form action="" method="POST" accept-charset="utf-8">
 				{% csrf_token %}
 				    <input type="hidden" value={{course.id}} name="course_id"></a>
-					    <input type="submit" value="删除" >
+					    <input type="submit" value="删除" onclick="return confirm('若删除课程，则相关的课件资料将被清空。是否确定删除课程？')">
 				</form>
 			  </td>
                         </tr>
@@ -64,9 +64,53 @@
                 </table>
             </div>
             <div style="text-align:center"><a href="../../create" class="btn btn-primary">创建新的课程</a></div>
+            </br> </br> </br>
         </div>
 
-
+        <!---    List of my message-->
+		<div class="container ">
+            <div class="panel panel-default col-md-offset-1 col-md-10">
+                <!-- Default panel contents -->
+                <div class="panel-heading">我的消息</div>
+                <!-- Table -->
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>内容</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comment_reply in conmment_reply_list %}
+                        <tr>
+                          <td>{{comment_reply.time}}</td>
+                          <td><a herf=""{{comment_reply.name}}>回复了你的评论：{{comment_reply.content}}</a></td>
+                          <td><form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
+				               <input type="hidden" value={{comment_reply.id}} name="comment_reply.id"></a>
+					           <input type="submit" value="删除" onclick="return confirm('删除该条消息？')">
+				               </form>
+			              </td>
+                        </tr>
+                        {% endfor %}
+<!---    这一段想写课程更新,不知道怎么写
+                        {% for comment_reply in comment_reply_list %}
+                        <tr>
+                          <td>{{comment_reply.time}}</td>
+                          <td><a herf=""{{comment_reply.name}}>回复了你的评论：{{comment_reply.content}}</a></td>
+                          <td><form action="" method="POST" accept-charset="utf-8">{% csrf_token %}
+				               <input type="hidden" value={{conmment_reply.id}} name="comment_reply.id"></a>
+					           <input type="submit" value="删除" onclick="return confirm('删除该条消息？')">
+				               </form>
+			              </td>
+                        </tr>
+                        {% endfor %}
+-->
+                    </tbody>
+                </table>
+                </div>
+                </br></br></br>
+    
 
 
  {% endblock content %}
