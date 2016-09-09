@@ -2,7 +2,7 @@
 hr.small{
 	max-width: 200px;
 	margin: 15px auto;
-	border-width: 10px;
+	border-width: 4px;
 	border-color: white;
 }
 .course-nav .subheading p{
