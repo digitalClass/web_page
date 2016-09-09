@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}课程视频-{{ video_data.title }}{% endblock %}
+{% block css %}
+    <link href="/static/css/player_css_base.css" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
+    <link href="/static/css/video_player.css" rel="stylesheet">
+  <link href="http://vjs.zencdn.net/5.11.6/video-js.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+	<div >
+		<a href= "/course/{{course_data.id}}" >
+		<h1 style="margin: 0 20%;">
+			<<返回课程主页	
+		</h1>
+		</a>
+	</div>
+	<br>
+	<br>
+<div class= "container">
+<div class='row'>
+<div class='col-md-9'>
+<h1>课程视频</h1>
+<video id="my-video" class="video-js" controls preload="auto" width="100%" height="100%"
+  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <source src="{{ video_data.path }}" type='video/mp4'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+</div>
+<div class='col-md-3'>
+<h1>视频信息</h1><br>
+<div class="container" style="width:100%;border: solid 2px gray">
+<p>视频名称: {{video_data.title}} </p><br><br>
+<p>视频简介: {{video_data.introduce}} </p><br><br>
+<p>视频上传日期: {{video_data.upload_time }} </p><br><br>
+</div>
+</div>
+</div>
+ <br>
+<br>
+<hr>
+<div class="container">
+	<div class="row">
+		<h1>交流区</h1>
+	</div>
+    
+    <div class="row">
+    
+    <div class="col-md-9">
+    						<div class="widget-area no-padding blank">
+								<div class="status-upload">
+									<form>
+										<textarea id='comment_content' placeholder="有什么想说的呢？尽管说吧！" ></textarea>
+										<ul>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+											<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+										</ul>
+										<button id="submit" type="submit" class="btn btn-success green"><i class="fa fa-share"></i>发表</button>
+									</form>
+								</div><!-- Status Upload  -->
+							</div><!-- Widget Area -->
+						</div>
+        
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<h1>已有的评论</h1><br><br><br>
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+{% for vc in video_comments_data %}
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="{{ vc.user_avatar }}">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-8">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>{{ vc.user_name }}</strong> <span class="text-muted">评论于{{ vc.date }}</span>
+</div>
+<div class="panel-body">
+{{ vc.content }}
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+
+</div><!-- /row -->
+
+{% endfor %}
+
+</div><!-- /container -->
+ {% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    window.username = "{{ user_data }}";
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+    $("#submit").click(function(){
+		ajaxPost('/add_video_comment/', {'content': $('#comment_content').val()},function(result){
+			console.log(result);
+			alert(result);
+		});
+	});
+	});
+</script>
+  <!-- If you'd like to support IE8 -->
+  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+<script type="text/javascript" src="/static/js/video_player.js"></script>
+{% endblock %}
