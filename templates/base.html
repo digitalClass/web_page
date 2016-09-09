@@ -27,83 +27,118 @@
     <![endif]-->
 
     <!-- Custom styles for this template -->
-{#    <link href="/static/css/css_base.css" rel="stylesheet">#}
     <link href="/static/css/base.css" rel="stylesheet">
 
 {% endblock %}
-    {% block css %} {% endblock %}
+    {% block css %}
+    {% endblock %}
+    <style type="text/css">
+    *{marin:0;padding: 0;}
+    html,body,.wapper{height: 100%;}
+    .wapper{
+      height:auto;
+      min-height: 100%;
+      _height:100%;
+    }
+    .footer{
+      position: relative;
+      height: 100px;
+      margin-top: -100px;
+      text-align: center;
+      font-size: 20px;
+    }
+    .main{
+      padding-bottom: 100px;
+    }
+    .navbar-title{
+      text-align: center;
+      font-size: 30px;
+    }
+    .logo{
+      height: 70px;
+      width: auto;
+      font-size: 0;
+      display: block;
+      float: left;
+    }
+    </style>
 </head>
 <body>
+<div class="wapper">
+<div class="main">
     {% block navbar %}
-    <!-- 导航条
-    ================================================== -->
-    <div class="navbar-wrapper">
+    <!-- 导航条 -->
+    <nav class="navbar navbar-default" style="margin-bottom:0;padding-bottom:0;background-color:white;">
+      <!--navbar-wrapper navbar navbar-default navbar-inverse navbar-static-top"-->
       <div class="container-fluid">
-        <!--导航条， 深色背景， 固定在顶部-->
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <!--用于固定宽度， 可以用来为包裹的内容添加一个 padding， 非占满全屏宽度-->
-          <div class="container-fluid">
-              <row>
-                <div class="navbar-header col-md-offset-1">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
+        <div class="row">
 
-                  <!--logo-->
-                  <a class="navbar-brand" href="/">
-                      <img alt="Brand" src="/static/images/logo.ico" class = "logo">
-                  </a>
-                </div>
-
-                  <!--欢迎字符-->
-                <div id="navbar" class="navbar-collapse collapse col-md-offset-4">
-                  <ul class="nav navbar-nav ">
+          <!-- title -->
+          <div class="navbar-header">
+            <a href="/">
+              <img alt="digitalClass" src="/static/images/icn.png" class = "logo">
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar11">
+              <!-- aria-expanded="false" aria-controls="navbar"-->
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <!-- menu -->
+          <div class="collapse navbar-collapse navbar-right" style="color:black;padding-top:10px;" id="navbar11">
+            <ul class="nav navbar-nav">
+              {% block logstatus %}
+              {% if logined %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  {{user_name}}<span class="sr-only">(current)</span>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="/accounts/profile/">profile</a></li>
+                  <li><a href="/accounts/logout/">注销</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li><a href="/accounts/login/">登录<span class="sr-only">(current)</span></a></li>
+              <li><a href="/accounts/register/">注册</a></li>
+              {% endif %}
+              {% endblock logstatus %}
+            </ul>
+          </div>
+          <!--欢迎字符-->
+                  <!--
+                <div class="nnavbar-collapse collapse col-md-offset-4">
+                <!--col-md-offset-4--><!--
+                  <ul class="nav navbar-nav">
                       <p class="navbar-text">欢迎来到数字化课堂</p>
-                  </ul>
-
-                  <ul class = "nav navbar-nav navbar-right col-md-1">
-                    <li><span class="icon-bar"></span></li>
-                  </ul>
-
-                  <!--登陆注册-->
-
-                  {% block logstatus %}
-                  {% if logined %}
-                  <ul class = "nav navbar-nav navbar-right">
-                    <li><a href="/accounts/profile/">{{user_name}}<span class="sr-only">(current)</span></a></li>
-                    <li><a href="/accounts/logout/">注销</a></li>
-                  </ul>
-                  {% else %}
-                  <ul class = "nav navbar-nav navbar-right">
-                    <li><a href="/accounts/login/">登录<span class="sr-only">(current)</span></a></li>
-                    <li><a href="/accounts/register/">注册</a></li>
-                  </ul>
-                  {% endif %}
-                  {% endblock logstatus %}
-                </div>
-              </row>
-             </div>
-        </nav>
+        </ul>-->
       </div>
-    </div>
+     </div>
+    </nav>
     {% endblock navbar %}
 
     {% block content %}{% endblock %}
-
+  </div>
+</div>
         <!-- Marketing messaging and featurettes
     ================================================== -->
-    <div class="container-fluid marketing">
+    <!--<div class="container-fluid marketing">-->
+      
+      
       <!-- FOOTER -->
-      <footer class = "col-md-offset-1 col-md-11">
+      <div class="footer">
+      <hr/>
+      <div style="height:20px;">
+      </div>
         <p class="pull-right col-md-1"><span class = "icon-bar"></span></p>
         <p class="pull-right"><a href="/feedback/">反馈</a></p>
         <p>&copy; 2016 i9, Team. &middot; <a href="../../building">隐私</a> &middot; <a href="../../building">法律条款</a></p>
-      </footer>
+      </div>
 
-    </div><!-- /.container -->
+   <!-- </div><!-- /.container -->
 
 </body>
 
