@@ -11,7 +11,7 @@
 {% block content %}
 	<div >
 		<a href= "/course/{{course_data.id}}" >
-		<h1 style="margin: 0 20%;">
+		<h1 style="margin: 0 14%;">
 			<<返回课程主页	
 		</h1>
 		</a>
@@ -23,7 +23,7 @@
 <div class='col-md-9'>
 <h1>课程视频</h1>
 <video id="my-video" class="video-js" controls preload="auto" width="100%" height="100%"
-  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+   data-setup="{}">
     <source src="{{ video_data.path }}" type='video/mp4'>
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -48,9 +48,9 @@
 		<h1>交流区</h1>
 	</div>
     
-    <div class="row">
+    <div  class="row">
     
-    <div class="col-md-9">
+    <div id="discuss" class="col-md-9">
     						<div class="widget-area no-padding blank">
 								<div class="status-upload">
 									<form>
@@ -72,12 +72,12 @@
 
 <div class="container">
 <div class="row">
-<div class="col-sm-12">
+<div class="col-sm-12 comment-zone">
 <h1>已有的评论</h1><br><br><br>
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 {% for vc in video_comments_data %}
-<div class="row">
+<div class="row comment-content">
 <div class="col-sm-1">
 <div class="thumbnail">
 <img class="img-responsive user-photo" src="{{ vc.user_avatar }}">
@@ -109,9 +109,50 @@
 <script type="text/javascript">
 	$(document).ready(function(){	
     $("#submit").click(function(){
-		ajaxPost('/add_video_comment/', {'content': $('#comment_content').val()},function(result){
-			console.log(result);
-			alert(result);
+		var pathArray = window.location.pathname.split('/');
+		var course_id = pathArray[2];
+		var video_name = pathArray[3];
+		ajaxPost('/add_video_comment/', {'course_id': course_id, 'video_name': video_name,'content': $('#comment_content').val()},function(result){
+//			alert(JSON.stringify(result, null, 4));
+			if(result.result === 0)
+			{
+				//$('#discuss').prepend("<p>hhh</p>");
+				alert('评论成功');
+				
+				//return $('#discuss').prepend('<div class="alert alert-success" role="alert">...</div>');
+				var new_comment_html = '<div class="row comment-content">'+
+				'<div class="col-sm-1">'+
+				'<div class="thumbnail">'+
+				'<img class="img-responsive user-photo" src="'+result.user_avatar+'">'+
+				'</div><!-- /thumbnail -->'+
+				'</div><!-- /col-sm-1 -->'+
+				'<div class="col-sm-8">'+
+				'<div class="panel panel-default">'+
+				'<div class="panel-heading">'+
+				'<strong>'+result.user_name +'</strong> <span class="text-muted">评论于'+ result.date + '</span>'+
+				'</div>'+
+				'<div class="panel-body">'+result.content+
+				'</div><!-- /panel-body -->'+
+				'</div><!-- /panel panel-default -->'+
+				'</div><!-- /col-sm-5 -->'+
+				'</div><!-- /row -->';
+
+//				console.log(new_comment_html);
+//				alert(new_comment_html);
+
+//				alert('wait');
+//				setTimeout(function(){alert('wait');},3000);
+
+//				$('.comment-zone').append(new_comment_html);
+//				return;
+				//$('.comment-content').prepend('<p>=========================11</p>');
+				//$('<p>=========================11</p>').insertBefore($('.comment-content'));
+
+			}
+			else{
+				alert('抱歉，评论失败');
+				return;
+			}
 		});
 	});
 	});
