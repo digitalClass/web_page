@@ -1,5 +1,5 @@
 /* 清除内外边距 */
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+body, h1, h2, h3, h4, h6, hr, p, blockquote, /* structural elements 结构元素 */
 dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
 pre, /* text formatting elements 文本格式元素 */
 fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
@@ -17,8 +17,8 @@ button, input, select, textarea { /* for ie */
 
 h1 { font-size: 18px; /* 18px / 12px = 1.5 */ }
 h2 { font-size: 16px; }
-h3 { font-size: 14px; }
-h4, h5, h6 { font-size: 100%; }
+h3,h5 { font-size: 14px; }
+h4,  h6 { font-size: 100%; }
 
 address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
 code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */

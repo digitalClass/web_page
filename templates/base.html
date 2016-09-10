@@ -87,8 +87,16 @@
             </button>
           </div>
           <!-- menu -->
-          <div class="collapse navbar-collapse navbar-right" style="color:black;padding-top:10px;" id="navbar11">
-            <ul class="nav navbar-nav">
+          <div class="collapse navbar-collapse " style="color:black;" id="navbar11">
+            <ul class="nav navbar-nav ">
+            <li ><a href="/"><h5>主页</h5></a></li>
+            <li ><a href="/"><h5>所有课程</h5></a></li>
+            <li><a href="/discuss/"><h5>讨论区</h5></a></li>
+            <li><a href="/about/"><h5>关于我们</h5></a></li>
+            <li><a href="/contact/"><h5>联系我们</h5></a></li>
+			</ul>
+            <ul class="nav navbar-nav navbar-right">
+			
               {% block logstatus %}
               {% if logined %}
               <li class="dropdown">
