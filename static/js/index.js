@@ -83,7 +83,7 @@ $(function(){
                 for (var i = 0; i < oResult.item_count; i++) {
                     var sHtml = [
                         '<tr>',
-                        '<th>', oResult.course[i].id, '</th>' +
+                        '<th>', oResult.course[i].course_id, '</th>' +
                         '                        <th><a href=/course/', oResult.course[i].id, '>', oResult.course[i].title, '</a></th>' +
                         '                      <th>', oResult.course[i].create_time, '</th>' +
                         '                      <th>', oResult.course[i].teacher_name, '</th>' +
