@@ -57,7 +57,7 @@ $(function(){
 			if (page_id === totalpage){
 				$("li:contains('\xBB')").addClass("disabled");
 			}
-			if (page_id < 4){
+			if (page_id < totalpage){
 				$("li:contains('\xBB')").removeClass("disabled");
 			}
 			if (page_id === 1){
