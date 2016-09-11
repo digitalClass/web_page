@@ -37,7 +37,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>课程序号</th>
+                            <th>课程编号</th>
                             <th>课程名称</th>
                             <th>开课时间</th>
                             <th>开课老师</th>
@@ -47,7 +47,7 @@
                     <tbody>
                         {% for course in course_list %}
                         <tr>
-                          <th scope="row">{{course.id}}</th>
+                          <th scope="row">{{course.course_id}}</th>
                           <td><a href="/course/{{course.id}}">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher_name}}</td>
