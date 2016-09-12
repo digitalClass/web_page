@@ -1,0 +1,28 @@
+<div class="alert alert-block alert-{{ notice.level }}">
+  <a class="close pull-right" href="{% url 'notifications:mark_as_read' notice.slug %}">
+    <i class="icon-close"></i>
+  </a>
+  
+  <h4>
+    <i class="icon-mail{% if notice.unread %}-alt{% endif %}"></i>
+    {{ notice.actor }} 
+    {% if notice.target %}
+      在课程 {{ notice.target }} 中
+    {% endif %}
+    {{ notice.verb }}
+    {{ notice.description|linebreaksbr }}
+  </h4>
+  
+  <p>{{ notice.timesince }} ago</p>
+ {% if notice.unread %}
+    <a class="btn" href="/inbox/notifications/mark-as-read/{{notice.id}}">标记为已读</a>  
+ {% else %}
+    <a class="btn" href="/inbox/notifications/mark-as-unread/{{notice.id}}">标记为未读</a>  
+ {% endif %} 
+  <!-- <div class="notice-actions"> -->
+  <!--   {% for action in notice.data.actions %} -->
+  <!--     <a class="btn" href="{{ action.href }}">{{ action.title }}</a> -->
+  <!--   {% endfor %} -->
+  <!--   <a class="btn" href="./mark-as-read/{{notice.id}}">标记为已读</a> -->
+  <!-- </div> -->
+</div>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<ul class="notifications">
+  {% for notice in notifications %}
+    {% include 'notifications/notice.html' %}
+  {% endfor %}
+  <a href="/inbox/notifications/all/">查看所有消息请点这</a>
+</ul>
+{% endblock content %}
