@@ -41,7 +41,9 @@
                             <th>课程名称</th>
                             <th>开课时间</th>
                             <th>开课老师</th>
+			{% ifequal user_role 'te'  %}
                             <th>操作</th>
+			{% endifequal %}
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +53,8 @@
                           <td><a href="/course/{{course.id}}">{{course.title}}</a></td>
                           <td>{{course.create_time}}</td>
                           <td>{{course.teacher_name}}</td>
+                          {% ifequal user_role 'te'  %}
+
                           <td><!-- a herf="../../building">删除课程</a-->
 				<form action="" method="POST" accept-charset="utf-8">
 				{% csrf_token %}
@@ -58,12 +62,15 @@
 					    <input type="submit" value="删除" onclick="return confirm('若删除课程，则相关的课件资料将被清空。是否确定删除课程？')">
 				</form>
 			  </td>
+			  {% endifequal %}
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+		{% ifequal user_role 'te'  %}
             <div style="text-align:center"><a href="../../create" class="btn btn-primary">创建新的课程</a></div>
+		{% endifequal %}
             </br> </br> </br>
         </div>
 
