@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<ol class="notifications">
+    {% if notifications %}
+        {% for notice in notifications %}
+            {% include 'notifications/notice.html' %}
+        {% endfor %}
+    <a href="{% url 'notifications:mark_all_as_read' %}">将所有标记为已读</a>
+    {% else %}
+    <p>您没有未读消息</p>
+    <a href="{% url 'notifications:all' %}">查看所有消息请点这</a>
+    {% endif %}
+</ol>
+{% endblock content %}

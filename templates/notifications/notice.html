@@ -9,16 +9,17 @@
         </a>
     {% endif %} 
   
-  <h4>
-    <i class="icon-mail{% if notice.unread %}-alt{% endif %}">这是啥？</i>
+  <li>
+    <i class="icon-mail{% if notice.unread %}-alt{% endif %}"></i>
     {{ notice.actor }} 
     {% if notice.target %}
       在课程 {{ notice.target }} 中
     {% endif %}
     {{ notice.verb }}
     {{ notice.description|linebreaksbr }}
-    <a href="/classroom/{{notice.target.id}}/{{notice.target.title}}">点此查看</a>
-  </h4>
+    <a href={{ notice.url }}>点此查看</a>
+    <p>{{ notice.timesince }} 以前</p>
+  </li>
   
   <!-- <div class="notice-actions"> -->
   <!--   {% for action in notice.data.actions %} -->
