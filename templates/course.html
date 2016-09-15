@@ -167,7 +167,7 @@
 									{{ppt.introduce}}
 								</h3>
 							</a>
-							<p class="source-time">{{ppt.upload_time}}</p>
+							<p class="source-time">{{ppt.upload_time.date}}</p>
 							{%if  Is_this_course_teacher %}
 							<form action="" method="POST" accept-charset="utf-8">
 								{% csrf_token %}
