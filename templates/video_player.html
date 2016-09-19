@@ -121,7 +121,7 @@
 				alert('抱歉，评论失败:'+ result.msg);
 				return;
 			}
-		});
+		}, {'onRedirect': function(){window.location.href="/accounts/login/";}});
 		alert('评论已经提交');
 	});
 	});
