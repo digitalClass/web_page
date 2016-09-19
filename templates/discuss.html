@@ -35,9 +35,9 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container comment-zone">
 <div class="row">
-<div class="col-sm-12 comment-zone">
+<div class="col-sm-12 ">
 <h1>已有的评论</h1><br><br><br>
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
@@ -73,49 +73,21 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){	
+
     $("#submit").click(function(){
 		ajaxPost('/add_discuss_comment/', {'content': $('#comment_content').val()},function(result){
-//			alert(JSON.stringify(result, null, 4));
+		//	alert(JSON.stringify(result, null, 4));
 			if(result.result === 0)
 			{
-				//$('#discuss').prepend("<p>hhh</p>");
-				alert('评论成功');
-				
-				//return $('#discuss').prepend('<div class="alert alert-success" role="alert">...</div>');
-				var new_comment_html = '<div class="row comment-content">'+
-				'<div class="col-sm-1">'+
-				'<div class="thumbnail">'+
-				'<img class="img-responsive user-photo" src="'+result.user_avatar+'">'+
-				'</div><!-- /thumbnail -->'+
-				'</div><!-- /col-sm-1 -->'+
-				'<div class="col-sm-8">'+
-				'<div class="panel panel-default">'+
-				'<div class="panel-heading">'+
-				'<strong>'+result.user_name +'</strong> <span class="text-muted">评论于'+ result.date + '</span>'+
-				'</div>'+
-				'<div class="panel-body">'+result.content+
-				'</div><!-- /panel-body -->'+
-				'</div><!-- /panel panel-default -->'+
-				'</div><!-- /col-sm-5 -->'+
-				'</div><!-- /row -->';
-
-//				console.log(new_comment_html);
-//				alert(new_comment_html);
-
-//				alert('wait');
-//				setTimeout(function(){alert('wait');},3000);
-
-//				$('.comment-zone').append(new_comment_html);
-//				return;
-				//$('.comment-content').prepend('<p>=========================11</p>');
-				//$('<p>=========================11</p>').insertBefore($('.comment-content'));
-
 			}
 			else{
 				alert('抱歉，评论失败:' + result.msg);
 				return;
 			}
-		});
+		}, {'onRedirect': function(){alert('onRedirect');}});
+
+		alert('评论已经提交');
+
 	});
 	});
 </script>
