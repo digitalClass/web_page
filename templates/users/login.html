@@ -18,11 +18,19 @@
                 {% for field in form %}
                    {% include "users/partials/field.html" %} 
                 {% endfor %}
-
-              <button type="submit" class="btn btn-primary">提交</button>
-              <input type="hidden" name="next" value="{{next}}"/>
-              <p><a href="{% url 'users_password_reset' %}">忘记密码？</a></p>
-              <p><a href="{% url 'users_register' %}">用户注册</a></p>
+                <div style="padding-top:10px;">
+                  <div>
+                    <span>
+                      <button type="submit" class="btn btn-primary">denglu</button>
+                      <span>
+                        <p style="padding-top:10px;"><a href="{% url 'users_register' %}">qu注册</a></p>
+                        <!--<button class="btn btn-primary" href="../register/">qu注册</button>-->
+                      </span>
+                    </span>
+                  </div>
+                  <input type="hidden" name="next" value="{{next}}"/>
+                  <p><a href="{% url 'users_password_reset' %}">zhaohuimima</a></p>
+                </div>
             </form>
         </div>
     </div>

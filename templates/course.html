@@ -138,7 +138,7 @@
 								{% endifequal %}
 								{% endifequal %}
 								<span>
-								<a href="../../building">
+								<a href="/create">
 									<button type="submit" class="btn btn-primary">
 										编辑
 									</button>
@@ -178,22 +178,11 @@
 							</a>
 							<p class="source-time">{{ppt.upload_time.date}}</p>
 							{%if  Is_this_course_teacher %}
-							<span>
-								<span>
-									<form action="" method="POST" accept-charset="utf-8" class="btn btn-primary btnn">
-										{% csrf_token %}
-										<input type="hidden" value={{ppt.id}} name="delete_ppt_id" class="btn btn-primary">
-										<input type="submit" value="删除" onclick="return confirm('delete the ppt,yes or no?')" class="btn btn-primary">
-									</form>
-								<span>
-									<a href="../../building">
-										<button type="submit" class="btn btn-primary">
-											编辑
-										</button>
-									</a>
-								</span>
-								</span>
-							</span>
+							<form action="" method="POST" accept-charset="utf-8" class="btn btn-primary btnn">
+								{% csrf_token %}
+								<input type="hidden" value={{ppt.id}} name="delete_ppt_id" class="btn btn-primary">
+								<input type="submit" value="删除" onclick="return confirm('delete the ppt,yes or no?')" class="btn btn-primary">
+							</form>
 							{% endif %}
 						</div>
 						{% endfor %}

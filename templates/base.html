@@ -99,20 +99,21 @@
 			
               {% block logstatus %}
               {% if logined %}
+              <li><a href="../../building"><h5>xiazaikehuduan</h5></a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top:23px;">
                   {{user_name}}<span class="sr-only">(current)</span>
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="/notifications/">消息中心</a></li>
-                  <li><a href="/accounts/profile/">个人资料</a></li>
+                  <li><a href="/accounts/profile/">wodedingyue</a></li>
                   <li><a href="/accounts/logout/">注销</a></li>
                 </ul>
               </li>
               {% else %}
-              <li><a href="/accounts/login/">登录<span class="sr-only">(current)</span></a></li>
-              <li><a href="/accounts/register/">注册</a></li>
+              <li><a href="/accounts/login/" style="padding-top:23px;">登录<span class="sr-only">(current)</span></a></li>
+              <li><a href="/accounts/register/" style="padding-top:23px;">注册</a></li>
               {% endif %}
               {% endblock logstatus %}
             </ul>
@@ -143,6 +144,8 @@
       <div style="height:20px;">
       </div>
         <p class="pull-right col-md-1"><span class = "icon-bar"></span></p>
+        <p class="pull-right"><a href="#top">backtotop</a></p>
+        <p class="pull-right">&nbsp;&nbsp;&nbsp;</p>
         <p class="pull-right"><a href="/feedback/">反馈</a></p>
         <p>&copy; 2016 i9, Team. &middot; <a href="../../building">隐私</a> &middot; <a href="../../building">法律条款</a></p>
       </div>
