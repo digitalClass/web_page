@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block title %}登录{% endblock %}
 
@@ -21,15 +21,15 @@
                 <div style="padding-top:10px;">
                   <div>
                     <span>
-                      <button type="submit" class="btn btn-primary">denglu</button>
+                      <button type="submit" class="btn btn-primary">登录</button>
                       <span>
-                        <p style="padding-top:10px;"><a href="{% url 'users_register' %}">qu注册</a></p>
-                        <!--<button class="btn btn-primary" href="../register/">qu注册</button>-->
+                        <p style="padding-top:10px;"><a href="{% url 'users_register' %}">去注册</a></p>
+                        <!--<button class="btn btn-primary" href="../register/">去注册</button>-->
                       </span>
                     </span>
                   </div>
                   <input type="hidden" name="next" value="{{next}}"/>
-                  <p><a href="{% url 'users_password_reset' %}">zhaohuimima</a></p>
+                  <p><a href="{% url 'users_password_reset' %}">找回密码</a></p>
                 </div>
             </form>
         </div>
