@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}灌水交流讨论区{% endblock %}
+{% block title %}吐槽交流的地方{% endblock %}
 {% block css %}
     <link href="/static/css/player_css_base.css" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
     <link href="/static/css/discuss.css" rel="stylesheet">
-
 {% endblock %}
 
 {% block content %}
-<div class="container">
+	<div class="container">
 	<div class="row">
 		<h1>灌水交流讨论区</h1>
 	</div>
@@ -33,65 +32,42 @@
 						</div>
         
     </div>
+    <br>
 </div>
+		<div class="row clearfix">
+			<div class="central">
+				<table class="table">
+				<thead>
+					<tr>
+						<th>
+							标题
+						</th>
+						<th>
+							发表时间
+						</th>
+						<th>
+							作者
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for article in discuss_data %}
+					<tr>
+						<td>
+							<a href="/discuss/thread/{{ article.id }}">{{ article.title }}</a>
+						</td>
+						<td>
+							{{ article.time }}
+						</td>
+						<td>
+							<a href="http://www.baidu.com">{{ article.author }}</a>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
 
-<div class="container comment-zone">
-<div class="row">
-<div class="col-sm-12 ">
-<h1>已有的评论</h1><br><br><br>
-</div><!-- /col-sm-12 -->
-</div><!-- /row -->
-{% for d in discuss_data %}
-<div class="row comment-content">
-<div class="col-sm-1">
-<div class="thumbnail">
-<img class="img-responsive user-photo" src="{{ d.user_avatar }}">
-</div><!-- /thumbnail -->
-</div><!-- /col-sm-1 -->
-
-<div class="col-sm-8">
-<div class="panel panel-default">
-<div class="panel-heading">
-<strong>{{ d.user_name }}</strong> <span class="text-muted">评论于{{ d.date }}</span>
-</div>
-<div class="panel-body">
-{{ d.content }}
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div><!-- /col-sm-5 -->
-
-</div><!-- /row -->
-
-{% endfor %}
-
-</div><!-- /container -->
- {% endblock %}
-
-{% block js %}
-<script type="text/javascript">
-    window.username = "{{ user_data }}";
-</script>
-<script type="text/javascript">
-	$(document).ready(function(){	
-
-    $("#submit").click(function(){
-		ajaxPost('/add_discuss_comment/', {'content': $('#comment_content').val()},function(result){
-		//	alert(JSON.stringify(result, null, 4));
-			if(result.result === 0)
-			{
-			}
-			else{
-				alert('抱歉，评论失败:' + result.msg);
-				return;
-			}
-		}, {'onRedirect': function(){window.location.href="/accounts/login/";}});
-
-		alert('评论已经提交');
-
-	});
-	});
-</script>
-  <!-- If you'd like to support IE8 -->
-  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-<script type="text/javascript" src="/static/js/video_player.js"></script>
 {% endblock %}
