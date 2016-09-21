@@ -1,5 +1,4 @@
-﻿{% extends "base.html" %}
-
+{% extends "base.html" %}
 {% block title %}登录{% endblock %}
 
 {% block css %}
@@ -7,37 +6,39 @@
 {% endblock %}
 
 {% block content %}
-    <!--登陆表单-->
-    <div class="container-fluid login_form">
-        <div class = "col-md-offset-2 col-md-8">
-            <form action="." method="post" role="form">
+    <div class="logo_box">
+    <h3>数字化课堂欢迎您</h3>
+    <form action="." name="f" method="post" role="form">
                 {% if form.errors %}
-                    {% include "users/partials/errors.html" %}
+                   {% include "users/partials/errors.html" %}
                 {% endif %}
                 {% csrf_token %}
-                {% for field in form %}
-                   {% include "users/partials/field.html" %} 
-                {% endfor %}
-                <div style="padding-top:10px;">
-                  <div>
-                    <span>
-                      <button type="submit" class="btn btn-primary">登录</button>
-                      <span>
-                        <p style="padding-top:10px;"><a href="{% url 'users_register' %}">去注册</a></p>
-                        <!--<button class="btn btn-primary" href="../register/">去注册</button>-->
-                      </span>
-                    </span>
-                  </div>
-                  <input type="hidden" name="next" value="{{next}}"/>
-                  <p><a href="{% url 'users_password_reset' %}">找回密码</a></p>
-                </div>
-            </form>
+        <div class="input_outer">
+            <span class="u_user"></span>
+            <input name="username" class="text" onFocus=" if(this.value=='输入用户名登录') this.value=''" onBlur="if(this.value=='') this.value='输入用户名登录'" value="输入用户名登录" style="color: #FFFFFF !important" type="text">
+        </div>
+        <div class="input_outer">
+            <span class="us_uer"></span>
+            <label class="l-login login_password" style="color: rgb(255, 255, 255);display: block;">输入密码</label>
+            <input name="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" onFocus="$('.login_password').hide()" onBlur="if(this.value=='') $('.login_password').show()" value="" type="password">
+        </div>
+        <div class="mb2" style="text-align:center"><button class="sub" type="submit">登 录</button></div>
+    </form>
+    <div>
+        <div style="text-align:center">
+            <a href="{% url 'users_password_reset' %}" style="color: #FFFFFF">忘记密码？</a>
+        </div>
+        
+        <div <div style="text-align:center;font-size:20px">
+            <a href="{% url 'users_register' %}" style="color: #FFFFFF">还没注册账号！</a>
         </div>
     </div>
+   
+</div>
 {% endblock %}
 
 
 {% block js %}
-    <script src = "/static/js/login.js"></script>
+    <script src = "/static/js/jquery-3.0.0.js"></script>
 {#    <script src = "/static/js/field.js"></script>#}
 {% endblock %}
