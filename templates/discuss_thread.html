@@ -75,7 +75,7 @@
 	$(document).ready(function(){	
 
     $("#submit").click(function(){
-		ajaxPost('/add_discuss_comment/', {'content': $('#comment_content').val()},function(result){
+		ajaxPost('/add_discuss_comment/', {'content': $('#comment_content').val(), 'thread_id': window.location.pathname.split('/')[3]},function(result){
 		//	alert(JSON.stringify(result, null, 4));
 			if(result.result === 0)
 			{
