@@ -100,8 +100,8 @@
 {% block content %}
 	<!-- nav -->
 	<div class="intro-header" style="background-image: 
-				url({% if not course.img_path %}'/static/images/default_class.jpg'
-				{% else %}'{{course.img_path}}'{% endif %})">
+				url({% if not course.img %}'/static/images/default_class.jpg'
+				{% else %}'{{course.img.url}}'{% endif %})">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -130,7 +130,7 @@
 									{#老师#}
 									<a href="ppt_upload" class="btn btn-primary">上传课件</a>
 									<span>
-									<a href="/create">
+									<a href="edit">
 										<button type="submit" class="btn btn-primary">
 											编辑
 										</button>
