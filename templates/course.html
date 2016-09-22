@@ -115,34 +115,37 @@
 						<span class="subadd">
 							{{course.create_time}}
 							<span style="background-color:black;">
+              					{% if logined %}
 								{% ifequal user_role 'st' %}
-								{#学生#}
-								{% if Is_subscribed %}
-								<a class = "sr-only" id="js-subscribed_status_changed">0</a>
-								<a class="btn btn-primary js-course_rss">取消订阅</a>
-								{% else %}
-								<a class = "sr-only" id="js-subscribed_status_changed">1</a>
-								<a class="btn btn-primary js-course_rss">订阅</a>
-								{% endif %}
+									{#学生#}
+									{% if Is_subscribed %}
+									<a class = "sr-only" id="js-subscribed_status_changed">0</a>
+									<a class="btn btn-primary js-course_rss">取消订阅</a>
+									{% else %}
+									<a class = "sr-only" id="js-subscribed_status_changed">1</a>
+									<a class="btn btn-primary js-course_rss">订阅</a>
+									{% endif %}
 								{% else %}
 								{% ifequal user_role 'te'  %}
-								{% if Is_this_course_teacher %}
-								{#老师#}
-								<a href="ppt_upload" class="btn btn-primary">上传课件</a>
-								{% endif %}
+									{% if Is_this_course_teacher %}
+									{#老师#}
+									<a href="ppt_upload" class="btn btn-primary">上传课件</a>
+									<span>
+									<a href="/create">
+										<button type="submit" class="btn btn-primary">
+											编辑
+										</button>
+									</a></span>
+									{% endif %}
+								{% endifequal %}
+								{% endifequal %}
 								{% else %}
 								{#匿名用户#}
-								<button type="submit" class="btn btn-primary"><a
+								<!--<button type="submit" class="btn btn-primary"><a
 									href="/accounts/login/?next=/course/{{course.id}}">订阅</a>
-								</button>
-								{% endifequal %}
-								{% endifequal %}
-								<span>
-								<a href="/create">
-									<button type="submit" class="btn btn-primary">
-										编辑
-									</button>
-								</a></span>
+								</button>-->
+								<a href="/accounts/login/" class="btn btn-primary">订阅</a>
+								{% endif %}
 							</span>
 						</span>
 					</div>
