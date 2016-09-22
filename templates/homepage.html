@@ -66,54 +66,46 @@
 </div>
 
 <div class="wrapper">
+	{% for course in hot_course_data_1 %}
       <div class="col_third">
-        <div class="hover panel" id="3">
+        <div class="hover panel" id="{{ course.id}}">
           <div class="front">
             <div class="box1">
-              <p>计算机网络</p>
+              <p>{{ course.title }}</p>
             </div>
           </div>
           <div class="back">
             <div class="box2">
-              <p>老师：张张张</p>
-              <p>上课时间：周三</p>
+              <p>老师：{{course.teacher_name }}</p>
+              <p>创建日期: {{course.create_time }}</p>
+              <p>课程简介: {{course.introduce }}</p>
+              <p>订阅人数: {{course.subscribe_num }}</p>
             </div>
           </div>
         </div>
 		</div>
+	{% endfor %}
 
-		<div class="col_third">
-        <div class="hover panel" id="15">
+	{% for course in hot_course_data_2 %}
+      <div class="col_third end">
+        <div class="hover panel" id="{{ course.id}}">
           <div class="front">
             <div class="box1">
-              <p>图像中的自然原理</p>
+              <p>{{ course.title }}</p>
             </div>
           </div>
           <div class="back">
             <div class="box2">
-              <p>上课老师:郑老师</p>
-              <p>开课时间:2016年7月21日 19:04</p>
+              <p>老师：{{course.teacher_name }}</p>
+              <p>创建日期: {{course.create_time }}</p>
+              <p>课程简介: {{course.introduce }}</p>
+              <p>订阅人数: {{course.subscribe_num }}</p>
             </div>
           </div>
         </div>
 		</div>
-
-		<div class="col_third end">
-        <div class="hover panel" id="32">
-          <div class="front">
-            <div class="box1">
-              <p>组会数学</p>
-            </div>
-          </div>
-          <div class="back">
-            <div class="box2">
-              <p>上课老师:Zhang</p>
-              <p>开课时间:2016年7月28日 19:04</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+	{% endfor %}
+		      </div>
 	<div class="container" style="margin-top:250px; text-align:center">
 		<a class="btn btn-lg btn-primary" href="/course/" role="button">查看所有课程</a>
 	</div>
