@@ -190,9 +190,28 @@
 						{% endfor %}
 					</div>
 					<div class="tab-pane" id="panel-10110">
-					<hr>
-					<p style="text-align:center;padding:20px 0;font-size:36px;">敬请期待</p>
-					<hr>
+					{% for video in videos %}
+						<hr>
+						<div class="source-preview">
+							<a href="/course/{{course.id}}/video/{{ video }}">
+								<h2 class="source-title">
+									{{ video }}
+								</h2>
+								<h3 class="source-subtitle">
+									{{video.introduce}}
+								</h3>
+							</a>
+							<p class="source-time">{{video.upload_time.date}}</p>
+							{%if  Is_this_course_teacher %}
+							<form action="" method="POST" accept-charset="utf-8" class="btn btn-primary btnn">
+								{% csrf_token %}
+								<input type="hidden" value={{ppt.id}} name="delete_ppt_id" class="btn btn-primary">
+								<input type="submit" value="删除" onclick="return confirm('delete the ppt,yes or no?')" class="btn btn-primary">
+							</form>
+							{% endif %}
+						</div>
+						{% endfor %}
+
 						{% ifequal user_role 'te'  %}
 						{%if  Is_this_course_teacher %}
 						<div> <a href="../../building">
