@@ -15,7 +15,8 @@
    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
-
+	<script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+	
     <!--<script src="static/js/jquery.min.js"/>-->
     <!--<script src="/static/bootstrap/js/bootstrap.min.js"/>-->
 
@@ -63,6 +64,20 @@
       display: block;
       float: left;
     }
+	.redpoint{
+	  display:inline-block;
+	  height:16px;
+	  width:16px;
+	  line-height:50px;
+	  text-align:center;
+	  font-size:0.1em;
+	  border-radius:16px;
+	  color:#fff;
+	  background:red;
+	  position: relative;
+	  top: -10px;
+	  right: 15px;
+}
     </style>
 </head>
 <body>
@@ -102,6 +117,22 @@
               {% block logstatus %}
               {% if logined %}
               <li><a href="/building/"><h5>下载客户端</h5></a></li>
+			{% load notifications_tags %}
+			{% notifications_unread as unread_count %}
+			{% if unread_count %}
+			<li>
+			<a href="/notifications/">
+		        <span> <img alt="My Photo" src=/media/{{user.useravatar}}  width="80" height="80"  class = "img-circle"></span>
+			<span class="redpoint">
+			{{ unread_count }}
+			 </span>
+		         </a></li>
+			{% else %}
+			<li>
+			<a href="/accounts/profile/">
+		        <img alt="My Photo" src=/media/{{user.useravatar}}  width="80" height="80"  class = "img-circle">
+		         </a></li>
+			{% endif %}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top:23px;">
                   {{user_name}}<span class="sr-only">(current)</span>
