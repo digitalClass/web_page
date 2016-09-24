@@ -1,29 +1,26 @@
-<div class="alert alert-block alert-{{ notice.level }}">
-    {% if notice.unread %}
-        <a class="close pull-right" href="{% url 'notifications:mark_as_read' notice.slug %}">
-        <i class="icon-close">标记为已读</i>
-        </a>
-    {% else %}
-        <a class="close pull-right" href="{% url 'notifications:mark_as_unread' notice.slug %}">
-        <i class="icon-close">标记为未读</i>
-        </a>
-    {% endif %} 
-  
-  <li>
-    <i class="icon-mail{% if notice.unread %}-alt{% endif %}"></i>
-    {{ notice.actor }} 
-    {% if notice.target %}
-      在课程 {{ notice.target }} 中
-    {% endif %}
-    {{ notice.verb }}
-    {{ notice.description|linebreaksbr }}
-    <a href={{ notice.url }}>点此查看</a>
-    <p>{{ notice.timesince }} 以前</p>
-  </li>
-  
-  <!-- <div class="notice-actions"> -->
-  <!--   {% for action in notice.data.actions %} -->
-  <!--     <a class="btn" href="{{ action.href }}">{{ action.title }}</a> -->
-  <!--   {% endfor %} -->
-  <!-- </div> -->
-</div>
+<tbody>
+	<tr>
+		<td>{{ notice.timesince }}前</td>
+		<td>{{ notice.actor }} 
+		    {% if notice.target %}
+		      在课程 {{ notice.target }} 中
+		    {% endif %}
+		    {{ notice.verb }}
+		    {{ notice.description|linebreaksbr }}
+		    <a href={{ notice.url }}>点此查看</a>
+		</td>
+		<td>
+		    {% if notice.unread %}
+			<a href="{% url 'notifications:mark_as_read' notice.slug %}">
+			<i class="icon-close">标记为已读</i>
+			</a>
+		    {% else %}
+			<a href="{% url 'notifications:mark_as_unread' notice.slug %}">
+			<i class="icon-close">标记为未读</i>
+			</a>
+		    {% endif %} 
+		</td>
+	</tr>
+
+</tbody>
+

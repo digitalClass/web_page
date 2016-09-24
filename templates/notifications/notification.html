@@ -1,14 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-<ol class="notifications">
-    {% if notifications %}
-        {% for notice in notifications %}
-            {% include 'notifications/notice.html' %}
-        {% endfor %}
-    <a href="{% url 'notifications:mark_all_as_read' %}">将所有标记为已读</a>
-    {% else %}
-    <p>您没有未读消息</p>
-    <a href="{% url 'notifications:all' %}">查看所有消息请点这</a>
-    {% endif %}
-</ol>
+
+
+<div class="container-fluid" class="container" style="padding-top:40px;">
+
+	<div class="row-fluid" style="align:center">
+		<div class="panel panel-default col-md-offset-1 col-md-8">
+		<h3> 我的消息</h3>
+			<table class="table">
+				<thead>{% if notifications %}
+					<tr>
+						<th>时间</th>
+						<th>消息</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				    
+				
+				{% for notice in notifications %}
+				    {% include 'notifications/notice.html' %}
+				{% endfor %}
+			    <a href="{% url 'notifications:mark_all_as_read' %}">将所有标记为已读</a>
+			    {% else %}
+			    <p>您没有未读消息</p>
+			    <a href="{% url 'notifications:all' %}">查看所有消息请点这</a>
+			    {% endif %}
+
+				
+			</table>
+		</div>
+	</div>
+</div>
+
 {% endblock content %}
